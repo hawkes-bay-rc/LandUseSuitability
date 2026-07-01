@@ -7,76 +7,83 @@ Created on Wed Jul  1 11:39:35 2026
 ###### raster2dggs ###########################################################
 ### adapted from:  https://github.com/manaakiwhenua/raster2dggs/tree/master
 
-import rasterio
-import pandas as pd
-import numpy as np
+##############################################################################
+
 import h3
+import pandas as pd
+import rasterio
 from pyproj import Transformer
 
 # ==========================
 # User settings
 # ==========================
 
+h3_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\1_Data\H3Res12.csv"
+
+
 #raster_path = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\1_Data\MeanAnnualRainfall.tif"
 raster_path = r"\\gisdalton\gishub3\Land\HawkesBayRegion_LiDAR_2020\LUCWorkStream\D1\hbrc_dem_5m_slope_degrees_r2.tif"
 
-#output_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\MeanAnnualRainfall_H3.csv"
+#output_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\MeanAnnualRainfall_H3_12_FULL.csv"
 output_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\MeanSlope_H3.csv"
 
-#field_name = "MeanAnnualRainfall"
-field_name = "MeanSlope"
+h3_field = "GRID_ID"
+#output_field = "MeanAnnualRainfall"
+output_field = "MeanSlope"
 
-h3_resolution = 12
+# ==========================
+# Read H3 table
+# ==========================
 
-##############################################################################
+h3_df = pd.read_csv(h3_csv)
+
+# ==========================
+# Get H3 centre coordinates
+# ==========================
+
+centres = [h3.cell_to_latlng(cell) for cell in h3_df[h3_field]]
+
+h3_df["lat"] = [c[0] for c in centres]
+h3_df["lon"] = [c[1] for c in centres]
+
+# ==========================
+# Sample raster at H3 centres
+# ==========================
 
 with rasterio.open(raster_path) as src:
-    band = src.read(1)
-    nodata = src.nodata
-    transform = src.transform
-    crs = src.crs
-
-    rows, cols = np.where(band != nodata)
-
-    values = band[rows, cols]
-
-    xs, ys = rasterio.transform.xy(
-        transform,
-        rows,
-        cols,
-        offset="center"
+    transformer = Transformer.from_crs(
+        "EPSG:4326",
+        src.crs,
+        always_xy=True
     )
 
-# Convert from raster CRS to WGS84 lat/lon for H3
-transformer = Transformer.from_crs(crs, "EPSG:4326", always_xy=True)
+    xs, ys = transformer.transform(
+        h3_df["lon"].to_numpy(),
+        h3_df["lat"].to_numpy()
+    )
 
-lons, lats = transformer.transform(xs, ys)
+    coords = list(zip(xs, ys))
 
-df = pd.DataFrame({
-    "lon": lons,
-    "lat": lats,
-    "value": values
-})
+    values = [
+        v[0] for v in src.sample(coords)
+    ]
 
-df["h3"] = [
-    h3.latlng_to_cell(lat, lon, h3_resolution)
-    for lat, lon in zip(df["lat"], df["lon"])
-]
+    nodata = src.nodata
 
-# Aggregate raster values by H3 cell
-h3_df = (
-    df.groupby("h3", as_index=False)["value"]
-      .mean()
-)
+h3_df[output_field] = values
 
-print(h3_df.head())
-print(len(h3_df))
+# Remove NoData if wanted
+if nodata is not None:
+    h3_df.loc[h3_df[output_field] == nodata, output_field] = pd.NA
 
-h3_df = (
-    df.groupby("h3", as_index=False)["value"]
-      .mean()
-      .rename(columns={"value": field_name})
-)
+# ==========================
+# Export only join fields
+# ==========================
 
-# Save to output
-h3_df.to_csv(output_csv, index=False)
+out = h3_df[[h3_field, output_field]]
+
+out.to_csv(output_csv, index=False)
+
+print(out.head())
+print(len(out))
+print(out[output_field].notna().sum())
