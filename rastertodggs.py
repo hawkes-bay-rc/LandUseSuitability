@@ -6,8 +6,10 @@ Created on Wed Jul  1 11:39:35 2026
 """
 ###### raster2dggs ###########################################################
 ### adapted from:  https://github.com/manaakiwhenua/raster2dggs/tree/master
-
 ##############################################################################
+
+# In anaconda prompt open env: conda activate h3raster
+# Then run spyder
 
 import h3
 import pandas as pd
