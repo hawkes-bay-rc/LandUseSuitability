@@ -66,7 +66,6 @@ def classify_categorical(value, rules):
 
     return np.nan
 
-
 # ---------------------------------------------------------------------------
 # Crop rule dictionary
 # ---------------------------------------------------------------------------
@@ -83,6 +82,18 @@ crop_rules = {
                 "Unsuitable": ("<", 850),
             },
         },
+
+        "ART": {
+            "column": "MeanAnnualRainfall",
+            "type": "numeric",
+            "rules": {
+                "Well Suited": ("<", 1300),
+                "Suited": ("between", (1300, 1400)),
+                "Moderately Suited": ("between", (1400, 1500)),
+                "Unsuitable": (">", 1500),
+            },
+        },
+
 
         "SLP": {
             "column": "MeanSlope",
@@ -139,7 +150,7 @@ crop_rules = {
         },
 
         "STN": {
-            "column": "OVSR_TopSoilStony",
+            "column": "SiblingTopsoilStonesCode",
             "type": "categorical",
             "rules": {
                 "Well Suited": ["<1", "< 1", "0", "None", "Null"],
