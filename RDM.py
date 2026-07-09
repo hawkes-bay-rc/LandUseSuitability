@@ -4,11 +4,10 @@ Created on Tue Jul  7 10:54:37 2026
 
 @author: Ashton.Eaves
 """
-
-### Conditional Statements for crops #########################################
-
 # In anaconda prompt open env: conda activate h3raster
 # Then run spyder
+
+### Conditional Statements for Crop Suitability ###############################
 
 import pandas as pd
 import numpy as np
@@ -18,7 +17,6 @@ import numpy as np
 # ---------------------------------------------------------------------------
 
 csv_path = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\CropSuitabilityTest.csv"
-
 out_path = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\CropSuitabilityTest_Classified.csv"
 
 df = pd.read_csv(csv_path)
@@ -28,10 +26,15 @@ df = pd.read_csv(csv_path)
 # ---------------------------------------------------------------------------
 
 def classify_numeric(value, rules):
+    """Classify numeric values using threshold rules."""
+
     if pd.isna(value):
         return np.nan
 
-    value = float(value)
+    try:
+        value = float(value)
+    except ValueError:
+        return np.nan
 
     for suitability, condition in rules.items():
         op, threshold = condition
@@ -53,6 +56,8 @@ def classify_numeric(value, rules):
 
 
 def classify_categorical(value, rules):
+    """Classify text or integer categories."""
+
     if pd.isna(value):
         return np.nan
 
@@ -65,6 +70,21 @@ def classify_categorical(value, rules):
             return suitability
 
     return np.nan
+
+
+# ---------------------------------------------------------------------------
+# Rule names for output
+# ---------------------------------------------------------------------------
+
+rule_names = {
+    "ANR": "Rainfall requirement",
+    "ART": "Rainfall excess",
+    "SLP": "Slope",
+    "PRD": "Root depth",
+    "DRC": "Drainage",
+    "PWC": "Plant available water",
+    "STN": "Topsoil stones",
+}
 
 # ---------------------------------------------------------------------------
 # Crop rule dictionary
@@ -94,7 +114,6 @@ crop_rules = {
             },
         },
 
-
         "SLP": {
             "column": "MeanSlope",
             "type": "numeric",
@@ -107,7 +126,7 @@ crop_rules = {
         },
 
         "PRD": {
-            "column": "rootDepthRange",
+            "column": "RootDepthRange",
             "type": "categorical",
             "rules": {
                 "Well Suited": ["> 1 m", ">1 m", ">100 cm"],
@@ -138,14 +157,14 @@ crop_rules = {
             },
         },
 
-        "SPM": {
-            "column": "SoilProfileMaterial",
-            "type": "categorical",
+        "PWC": {
+            "column": "PAWmm",
+            "type": "numeric",
             "rules": {
-                "Well Suited": ["Md"],
-                "Suited": [],
-                "Moderately Suited": [],
-                "Unsuitable": [],
+                "Well Suited": (">", 150),
+                "Suited": ("between", (90, 150)),
+                "Moderately Suited": ("between", (60, 90)),
+                "Unsuitable": ("<", 60),
             },
         },
 
@@ -153,10 +172,10 @@ crop_rules = {
             "column": "SiblingTopsoilStonesCode",
             "type": "categorical",
             "rules": {
-                "Well Suited": ["<1", "< 1", "0", "None", "Null"],
-                "Suited": ["1 to 5", "1 - 5"],
-                "Moderately Suited": ["5 to 35", "5 - 35"],
-                "Unsuitable": [">35", "> 35"],
+                "Well Suited": ["0", "1", "<1", "< 1", "None", "Null"],
+                "Suited": ["2", "1 to 5", "1 - 5"],
+                "Moderately Suited": ["3", "5 to 35", "5 - 35"],
+                "Unsuitable": ["4", ">35", "> 35"],
             },
         },
     }
@@ -175,7 +194,7 @@ for crop, ruleset in crop_rules.items():
 
         if column not in df.columns:
             df[output_col] = np.nan
-            print(f"Missing column: {column}")
+            print(f"Missing column for {crop} {rule_id}: {column}")
             continue
 
         if rule["type"] == "numeric":
@@ -189,7 +208,7 @@ for crop, ruleset in crop_rules.items():
             )
 
 # ---------------------------------------------------------------------------
-# Optional: suitability scoring and final limiting class
+# Suitability scoring and final limiting class
 # ---------------------------------------------------------------------------
 
 score_map = {
@@ -215,12 +234,13 @@ for crop, ruleset in crop_rules.items():
     df[f"{crop}_FinalScore"] = df[score_cols].max(axis=1)
     df[f"{crop}_FinalClass"] = df[f"{crop}_FinalScore"].map(reverse_score_map)
 
-    # Limiting factor: the rule with the worst score
     df[f"{crop}_LimitingFactor"] = df[score_cols].idxmax(axis=1)
+
     df[f"{crop}_LimitingFactor"] = (
         df[f"{crop}_LimitingFactor"]
         .str.replace(f"{crop}_", "", regex=False)
         .str.replace("_score", "", regex=False)
+        .map(rule_names)
     )
 
 # ---------------------------------------------------------------------------
