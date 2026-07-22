@@ -84,6 +84,9 @@ rule_names = {
     "DRC": "Drainage",
     "PWC": "Plant available water",
     "STN": "Topsoil stones",
+    "FFB": "SON frost days",
+    "FFH": "MAM frost days",
+    "GDD": "Growing Degree Days"
 }
 
 # ---------------------------------------------------------------------------
@@ -176,6 +179,39 @@ crop_rules = {
                 "Suited": ["2", "1 to 5", "1 - 5"],
                 "Moderately Suited": ["3", "5 to 35", "5 - 35"],
                 "Unsuitable": ["4", ">35", "> 35"],
+            },
+        },
+        
+        "FFH": {
+            "column": "FrostDays_MAM",
+            "type": "categorical",
+            "rules": {
+                "Well Suited": ["<1"],
+                "Suited": ["1 to 2"],
+                "Moderately Suited": ["2 to 3"],
+                "Unsuitable": ["> 3"],
+            },
+        },
+        
+        "FFB": {
+            "column": "FrostDays_SON",
+            "type": "categorical",
+            "rules": {
+                "Well Suited": ["<1"],
+                "Suited": ["1 to 2"],
+                "Moderately Suited": ["2 to 3"],
+                "Unsuitable": ["> 3"],
+            },
+        },
+        
+        "GDD": {
+            "column": "GrowingDegreeDays",
+            "type": "categorical",
+            "rules": {
+                "Well Suited": [">1400"],
+                "Suited": ["1300 to 1400"],
+                "Moderately Suited": ["1100 to 1300"],
+                "Unsuitable": ["<1100"],
             },
         },
     }
