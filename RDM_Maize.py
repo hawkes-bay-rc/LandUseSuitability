@@ -9,6 +9,7 @@ Created on Tue Jul  7 10:54:37 2026
 
 ### Conditional Statements for Crop Suitability ###############################
 
+import os
 import pandas as pd
 import numpy as np
 
@@ -16,10 +17,22 @@ import numpy as np
 # Inputs
 # ---------------------------------------------------------------------------
 
-csv_path = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\CropSuitabilityTest.csv"
-out_path = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\CropSuitabilityTest_Classified.csv"
+csv_path = (
+    r"D:\Land\GIS_DATA\Landuse\LanduseSuitability"
+    r"\3_Outputs\CropSuitabilityTest.csv"
+)
 
-df = pd.read_csv(csv_path)
+out_path = (
+    r"D:\Land\GIS_DATA\Landuse\LanduseSuitability"
+    r"\3_Outputs\CropSuitabilityTest_Classified.csv"
+)
+
+df = pd.read_csv(
+    csv_path,
+    dtype={"GRID_ID": "string"},
+)
+
+df.columns = df.columns.str.strip()
 
 # ---------------------------------------------------------------------------
 # Generic classifiers
@@ -33,13 +46,17 @@ def classify_numeric(value, rules):
 
     try:
         value = float(value)
-    except ValueError:
+    except (TypeError, ValueError):
         return np.nan
 
     for suitability, condition in rules.items():
         op, threshold = condition
 
-        if op == ">" and value > threshold:
+        if op == "==" and value == threshold:
+            return suitability
+        elif op == "!=" and value != threshold:
+            return suitability
+        elif op == ">" and value > threshold:
             return suitability
         elif op == ">=" and value >= threshold:
             return suitability
@@ -51,6 +68,9 @@ def classify_numeric(value, rules):
             low, high = threshold
             if low <= value <= high:
                 return suitability
+        else:
+            if op not in {"==", "!=", ">", ">=", "<", "<=", "between"}:
+                raise ValueError(f"Unsupported operator: {op}")
 
     return np.nan
 
@@ -86,7 +106,8 @@ rule_names = {
     "STN": "Topsoil stones",
     "FFB": "SON frost days",
     "FFH": "MAM frost days",
-    "GDD": "Growing Degree Days"
+    "GDD": "Growing Degree Days",
+    "ESC": "Salinity"
 }
 
 # ---------------------------------------------------------------------------
@@ -184,34 +205,43 @@ crop_rules = {
         
         "FFH": {
             "column": "FrostDays_MAM",
-            "type": "categorical",
+            "type": "numeric",
             "rules": {
-                "Well Suited": ["<1"],
-                "Suited": ["1 to 2"],
-                "Moderately Suited": ["2 to 3"],
-                "Unsuitable": ["> 3"],
+                "Well Suited": ("<", 1),
+                "Suited": ("between", (1, 2)),
+                "Moderately Suited": ("between", (2, 3)),
+                "Unsuitable": (">", 3),
             },
         },
         
         "FFB": {
             "column": "FrostDays_SON",
-            "type": "categorical",
+            "type": "numeric",
             "rules": {
-                "Well Suited": ["<1"],
-                "Suited": ["1 to 2"],
-                "Moderately Suited": ["2 to 3"],
-                "Unsuitable": ["> 3"],
+                "Well Suited": ("<", 1),
+                "Suited": ("between", (1, 2)),
+                "Moderately Suited": ("between", (2, 3)),
+                "Unsuitable": (">", 3),
             },
         },
         
         "GDD": {
             "column": "GrowingDegreeDays",
-            "type": "categorical",
+            "type": "numeric",
             "rules": {
-                "Well Suited": [">1400"],
-                "Suited": ["1300 to 1400"],
-                "Moderately Suited": ["1100 to 1300"],
-                "Unsuitable": ["<1100"],
+                "Well Suited": (">", 1400),
+                "Suited": ("between", (1300, 1400)),
+                "Moderately Suited": ("between", (1100, 1300)),
+                "Unsuitable": ("<", 1100),
+            },
+        },
+        
+        "ECS": {
+            "column": "Salinity",
+            "type": "numeric",
+            "rules": {
+                "Well Suited": ("==", 0),
+                "Unsuitable": ("==", 1),
             },
         },
     }

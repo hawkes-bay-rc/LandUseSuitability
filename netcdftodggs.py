@@ -70,6 +70,30 @@ gdd_folder = (
     r"\Individual_Variables\Growing_Degree_Days"
 )
 
+hfl_folder = (
+    r"\\fileenviro\Esci\Climate"
+    r"\NIWA_Climate_Change_Projections_2024"
+    r"\Individual_Variables\Number_Very_Hot_Days_30deg"
+)
+
+met_folder = (
+    r"\\fileenviro\Esci\Climate"
+    r"\NIWA_Climate_Change_Projections_2024"
+    r"\Individual_Variables\Average_Daily_AirT_Tmean"
+)
+
+mnt_folder = (
+    r"\\fileenviro\Esci\Climate"
+    r"\NIWA_Climate_Change_Projections_2024"
+    r"\Individual_Variables\Average_Daily_AirT_Tmin"
+)
+
+mxt_folder = (
+    r"\\fileenviro\Esci\Climate"
+    r"\NIWA_Climate_Change_Projections_2024"
+    r"\Individual_Variables\Average_Daily_AirT_TMax"
+)
+
 
 # Each dictionary value must be the complete path to one NetCDF file.
 netcdf_files = {
@@ -87,6 +111,27 @@ netcdf_files = {
         gdd_folder,
         "GDD10_historical_MMM_CCAM_base_bp1995-2014_ANN_NZ5km.nc",
     ),
+    
+    "HeatStress_DJF": os.path.join(
+        hfl_folder,
+        "TX30_historical_MMM_CCAM_base_bp1995-2014_DJF_NZ5km.nc",
+    ),
+    
+    "MeanTemp_SON": os.path.join(
+        met_folder,
+        "T_historical_MMM_CCAM_base_bp1995-2014_SON_NZ5km.nc",
+    ),
+    
+    "MinTemp_SON": os.path.join(
+        mnt_folder,
+        "TN_historical_MMM_CCAM_base_bp1995-2014_SON_NZ5km.nc",
+    ),
+    
+    "MaxTemp_SON": os.path.join(
+        mxt_folder,
+        "TX_historical_MMM_CCAM_base_bp1995-2014_SON_NZ5km.nc",
+    ),
+    
 }
 
 
