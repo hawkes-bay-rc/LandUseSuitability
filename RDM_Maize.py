@@ -188,12 +188,12 @@ crop_rules = {
         },
         "STN": {
             "column": "SiblingTopsoilStonesCode",
-            "type": "categorical",
+            "type": "numeric",
             "rules": {
-                "Well Suited": ["0", "1", "<1", "< 1"],
-                "Suited": ["1 to 5", "1 - 5"],
-                "Moderately Suited": ["5 to 35", "5 - 35"],
-                "Unsuitable": [">35", "> 35"],
+                "Well Suited": ("<", 1),
+                "Suited": ("between", (1, 5)),
+                "Moderately Suited": ("between", (5, 35)),
+                "Unsuitable": (">", 35),
             },
         },     
         "FFH": {

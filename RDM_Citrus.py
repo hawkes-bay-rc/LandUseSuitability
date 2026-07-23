@@ -214,14 +214,14 @@ crop_rules = {
         },
         "STN": {
             "column": "SiblingTopsoilStonesCode",
-            "type": "categorical",
+            "type": "numeric",
             "rules": {
-                "Well Suited": ["<5", "< 5"],
-                "Suited": ["5 to 35", "5 - 35"],
-                "Moderately Suited": ["35 to 70", "35 - 70"],
-                "Unsuitable": [">70", "> 70"],
+                "Well Suited": ("<", 5),
+                "Suited": ("between", (5, 35)),
+                "Moderately Suited": ("between", (35, 70)),
+                "Unsuitable": (">", 70),
             },
-        },                   
+        },             
         "ECS": {
             "column": "Salinity",
             "type": "numeric",
