@@ -19,7 +19,7 @@ import numpy as np
 
 csv_path = (
     r"D:\Land\GIS_DATA\Landuse\LanduseSuitability"
-    r"\3_Outputs\CropSuitabilityTest.csv"
+    r"\3_Outputs\CropSuitability.csv"
 )
 
 out_path = (
@@ -39,7 +39,12 @@ df.columns = df.columns.str.strip()
 # ---------------------------------------------------------------------------
 
 def classify_numeric(value, rules):
-    """Classify numeric values using threshold rules."""
+    """
+    Classify numeric values using one or more conditions.
+
+    Supported operators:
+        ==, !=, >, >=, <, <=, between, or
+    """
 
     if pd.isna(value):
         return np.nan
@@ -49,28 +54,47 @@ def classify_numeric(value, rules):
     except (TypeError, ValueError):
         return np.nan
 
-    for suitability, condition in rules.items():
+    def condition_matches(value, condition):
+        """Return True when a value matches one condition."""
+
         op, threshold = condition
 
-        if op == "==" and value == threshold:
-            return suitability
-        elif op == "!=" and value != threshold:
-            return suitability
-        elif op == ">" and value > threshold:
-            return suitability
-        elif op == ">=" and value >= threshold:
-            return suitability
-        elif op == "<" and value < threshold:
-            return suitability
-        elif op == "<=" and value <= threshold:
-            return suitability
+        if op == "==":
+            return value == threshold
+
+        elif op == "!=":
+            return value != threshold
+
+        elif op == ">":
+            return value > threshold
+
+        elif op == ">=":
+            return value >= threshold
+
+        elif op == "<":
+            return value < threshold
+
+        elif op == "<=":
+            return value <= threshold
+
         elif op == "between":
             low, high = threshold
-            if low <= value <= high:
-                return suitability
+            return low <= value <= high
+
+        elif op == "or":
+            return any(
+                condition_matches(value, subcondition)
+                for subcondition in threshold
+            )
+
         else:
-            if op not in {"==", "!=", ">", ">=", "<", "<=", "between"}:
-                raise ValueError(f"Unsupported operator: {op}")
+            raise ValueError(
+                f"Unsupported operator: {op}"
+            )
+
+    for suitability, condition in rules.items():
+        if condition_matches(value, condition):
+            return suitability
 
     return np.nan
 

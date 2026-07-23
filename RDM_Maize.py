@@ -19,12 +19,12 @@ import numpy as np
 
 csv_path = (
     r"D:\Land\GIS_DATA\Landuse\LanduseSuitability"
-    r"\3_Outputs\CropSuitabilityTest.csv"
+    r"\3_Outputs\CropSuitability.csv"
 )
 
 out_path = (
     r"D:\Land\GIS_DATA\Landuse\LanduseSuitability"
-    r"\3_Outputs\CropSuitabilityTest_Classified.csv"
+    r"\3_Outputs\CropSuitabilityClassified_Maize.csv"
 )
 
 df = pd.read_csv(
@@ -126,7 +126,6 @@ crop_rules = {
                 "Unsuitable": ("<", 850),
             },
         },
-
         "ART": {
             "column": "MeanAnnualRainfall",
             "type": "numeric",
@@ -137,7 +136,6 @@ crop_rules = {
                 "Unsuitable": (">", 1500),
             },
         },
-
         "SLP": {
             "column": "MeanSlope",
             "type": "numeric",
@@ -148,7 +146,6 @@ crop_rules = {
                 "Unsuitable": (">", 15),
             },
         },
-
         "PRD": {
             "column": "RootDepthRange",
             "type": "categorical",
@@ -159,7 +156,6 @@ crop_rules = {
                 "Unsuitable": ["< 30 cm", "<30 cm"],
             },
         },
-
         "DRC": {
             "column": "DrainageClass",
             "type": "categorical",
@@ -180,7 +176,6 @@ crop_rules = {
                 ],
             },
         },
-
         "PWC": {
             "column": "PAWmm",
             "type": "numeric",
@@ -191,18 +186,16 @@ crop_rules = {
                 "Unsuitable": ("<", 60),
             },
         },
-
         "STN": {
             "column": "SiblingTopsoilStonesCode",
             "type": "categorical",
             "rules": {
-                "Well Suited": ["0", "1", "<1", "< 1", "None", "Null"],
-                "Suited": ["2", "1 to 5", "1 - 5"],
-                "Moderately Suited": ["3", "5 to 35", "5 - 35"],
-                "Unsuitable": ["4", ">35", "> 35"],
+                "Well Suited": ["0", "1", "<1", "< 1"],
+                "Suited": ["1 to 5", "1 - 5"],
+                "Moderately Suited": ["5 to 35", "5 - 35"],
+                "Unsuitable": [">35", "> 35"],
             },
-        },
-        
+        },     
         "FFH": {
             "column": "FrostDays_MAM",
             "type": "numeric",
@@ -213,8 +206,7 @@ crop_rules = {
                 "Unsuitable": (">", 3),
             },
         },
-        
-        "FFB": {
+       "FFB": {
             "column": "FrostDays_SON",
             "type": "numeric",
             "rules": {
@@ -223,8 +215,7 @@ crop_rules = {
                 "Moderately Suited": ("between", (2, 3)),
                 "Unsuitable": (">", 3),
             },
-        },
-        
+        },      
         "GDD": {
             "column": "GrowingDegreeDays",
             "type": "numeric",
@@ -234,8 +225,7 @@ crop_rules = {
                 "Moderately Suited": ("between", (1100, 1300)),
                 "Unsuitable": ("<", 1100),
             },
-        },
-        
+        },  
         "ECS": {
             "column": "Salinity",
             "type": "numeric",
