@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jul  7 10:54:37 2026
+Created on Fri Jul 24 13:16:54 2026
 
 @author: Ashton.Eaves
 """
+
 # In anaconda prompt open env: conda activate h3raster2
 # Then run spyder
 
@@ -24,7 +25,7 @@ csv_path = (
 
 out_path = (
     r"D:\Land\GIS_DATA\Landuse\LanduseSuitability"
-    r"\3_Outputs\CropSuitabilityClassified_Maize.csv"
+    r"\3_Outputs\CropSuitabilityClassified_Onions.csv"
 )
 
 df = pd.read_csv(
@@ -39,7 +40,12 @@ df.columns = df.columns.str.strip()
 # ---------------------------------------------------------------------------
 
 def classify_numeric(value, rules):
-    """Classify numeric values using threshold rules."""
+    """
+    Classify numeric values using one or more conditions.
+
+    Supported operators:
+        ==, !=, >, >=, <, <=, between, or
+    """
 
     if pd.isna(value):
         return np.nan
@@ -49,28 +55,47 @@ def classify_numeric(value, rules):
     except (TypeError, ValueError):
         return np.nan
 
-    for suitability, condition in rules.items():
+    def condition_matches(value, condition):
+        """Return True when a value matches one condition."""
+
         op, threshold = condition
 
-        if op == "==" and value == threshold:
-            return suitability
-        elif op == "!=" and value != threshold:
-            return suitability
-        elif op == ">" and value > threshold:
-            return suitability
-        elif op == ">=" and value >= threshold:
-            return suitability
-        elif op == "<" and value < threshold:
-            return suitability
-        elif op == "<=" and value <= threshold:
-            return suitability
+        if op == "==":
+            return value == threshold
+
+        elif op == "!=":
+            return value != threshold
+
+        elif op == ">":
+            return value > threshold
+
+        elif op == ">=":
+            return value >= threshold
+
+        elif op == "<":
+            return value < threshold
+
+        elif op == "<=":
+            return value <= threshold
+
         elif op == "between":
             low, high = threshold
-            if low <= value <= high:
-                return suitability
+            return low <= value <= high
+
+        elif op == "or":
+            return any(
+                condition_matches(value, subcondition)
+                for subcondition in threshold
+            )
+
         else:
-            if op not in {"==", "!=", ">", ">=", "<", "<=", "between"}:
-                raise ValueError(f"Unsupported operator: {op}")
+            raise ValueError(
+                f"Unsupported operator: {op}"
+            )
+
+    for suitability, condition in rules.items():
+        if condition_matches(value, condition):
+            return suitability
 
     return np.nan
 
@@ -99,15 +124,16 @@ def classify_categorical(value, rules):
 rule_names = {
     "ANR": "Rainfall requirement",
     "ART": "Rainfall excess",
-    "SLP": "Slope",
-    "PRD": "Root depth",
     "DRC": "Drainage",
-    "PWC": "Plant available water",
-    "STN": "Topsoil stones",
+    "ECS": "Salinity",
     "FFB": "SON frost days",
-    "FFH": "MAM frost days",
-    "GDD": "Growing Degree Days",
-    "ECS": "Salinity"
+    "HFO": "Harvest heat",
+    "PHH": "pH",
+    "PRD": "Root depth",        
+    "PWC": "Plant available water",
+    "RAH": "Harvest rainfall",
+    "SLP": "Slope",    
+    "STN": "Topsoil stones"
 }
 
 # ---------------------------------------------------------------------------
@@ -115,45 +141,25 @@ rule_names = {
 # ---------------------------------------------------------------------------
 
 crop_rules = {
-    "MaizeGrain": {
+    "Onions": {
         "ANR": {
             "column": "MeanAnnualRainfall",
             "type": "numeric",
             "rules": {
-                "Well Suited": (">", 1200),
-                "Suited": ("between", (1000, 1200)),
-                "Moderately Suited": ("between", (850, 1000)),
-                "Unsuitable": ("<", 850),
+                "Well Suited": (">", 800),
+                "Suited": ("between", (700, 800)),
+                "Moderately Suited": ("between", (600, 700)),
+                "Unsuitable": ("<", 600),
             },
         },
         "ART": {
             "column": "MeanAnnualRainfall",
             "type": "numeric",
             "rules": {
-                "Well Suited": ("<", 1300),
-                "Suited": ("between", (1300, 1400)),
-                "Moderately Suited": ("between", (1400, 1500)),
-                "Unsuitable": (">", 1500),
-            },
-        },
-        "SLP": {
-            "column": "MeanSlope",
-            "type": "numeric",
-            "rules": {
-                "Well Suited": ("<", 3),
-                "Suited": ("between", (3, 7)),
-                "Moderately Suited": ("between", (7, 15)),
-                "Unsuitable": (">", 15),
-            },
-        },
-        "PRD": {
-            "column": "RootDepthRange",
-            "type": "categorical",
-            "rules": {
-                "Well Suited": ["> 1 m", ">1 m", ">100 cm"],
-                "Suited": ["60 - 100 cm", "60 to 100 cm"],
-                "Moderately Suited": ["30 - 60 cm", "30 to 60 cm"],
-                "Unsuitable": ["< 30 cm", "<30 cm"],
+                "Well Suited": ("<", 1500),
+                "Suited": ("between", (1500, 1800)),
+                "Moderately Suited": ("between", (1800, 2000)),
+                "Unsuitable": (">", 2000),
             },
         },
         "DRC": {
@@ -163,19 +169,68 @@ crop_rules = {
                 "Well Suited": [
                     "Excessively drained",
                     "Well drained",
+                    "Moderately well drained",
                 ],
                 "Suited": [
-                    "Moderately well drained",
                     "Imperfectly drained",
                     "Imperfect drained",
                 ],
+                "Moderately Suited": [
+                    "Poorly drained"
+                ],
                 "Unsuitable": [
-                    "Poorly drained",
                     "Very poorly drained",
                     "Very-poorly drained",
                 ],
             },
         },
+        "ECS": {
+            "column": "Salinity",
+            "type": "numeric",
+            "rules": {
+                "Well Suited": ("==", 0),
+                "Unsuitable": ("==", 1),
+            },
+        },
+        "FFB": {
+             "column": "FrostDays_SON",
+             "type": "numeric",
+             "rules": {
+                 "Well Suited": ("<", 2),
+                 "Suited": ("between", (2, 3)),
+                 "Moderately Suited": ("between", (3, 4)),
+                 "Unsuitable": (">", 4),
+             },
+         },
+        "HFO": {
+            "column": "MaxTemp_DJF",
+            "type": "numeric",
+            "rules": {
+                "Well Suited": ("<", 3),
+                "Suited": ("between", (3, 6)),
+                "Moderately Suited": ("between", (6, 9)),
+                "Unsuitable": (">", 9),
+            },
+        },
+        "PHH": {
+            "column": "PH_MID",
+            "type": "numeric",
+            "rules": {
+                "Well Suited": (">", 6.0),
+                "Moderately Suited": ("between", (5.8, 6.0)),
+                "Unsuitable": ("<", 5.8),
+            },
+        },
+        "PRD": {
+            "column": "RootDepthRange",
+            "type": "categorical",
+            "rules": {
+                "Well Suited": [">60 cm"],
+                "Suited": ["45 - 60 cm", "45 to 60 cm"],
+                "Moderately Suited": ["20 - 45 cm", "20 to 45 cm"],
+                "Unsuitable": ["< 20 cm", "<20 cm"],
+            },
+        },        
         "PWC": {
             "column": "PAWmm",
             "type": "numeric",
@@ -186,54 +241,36 @@ crop_rules = {
                 "Unsuitable": ("<", 60),
             },
         },
+        "RAH": {
+            "column": "HarvestRainfall_DJF",
+            "type": "numeric",
+            "rules": {
+                "Well Suited": ("<", 1),
+                "Suited": ("between", (1, 2)),
+                "Moderately Suited": ("between", (2, 3)),
+                "Unsuitable": (">", 3),
+            },
+        },          
+        "SLP": {
+            "column": "MeanSlope",
+            "type": "numeric",
+            "rules": {
+                "Well Suited": ("<", 3),
+                "Suited": ("between", (3, 7)),
+                "Moderately Suited": ("between", (7, 15)),
+                "Unsuitable": (">", 15),
+            },
+        },
         "STN": {
             "column": "SiblingTopsoilStonesCode",
             "type": "numeric",
             "rules": {
                 "Well Suited": ("<", 1),
                 "Suited": ("between", (1, 5)),
-                "Moderately Suited": ("between", (5, 35)),
-                "Unsuitable": (">", 35),
+                "Moderately Suited": ("between", (5, 15)),
+                "Unsuitable": (">", 15),
             },
-        },     
-        "FFH": {
-            "column": "FrostDays_MAM",
-            "type": "numeric",
-            "rules": {
-                "Well Suited": ("<", 1),
-                "Suited": ("between", (1, 2)),
-                "Moderately Suited": ("between", (2, 3)),
-                "Unsuitable": (">", 3),
-            },
-        },
-       "FFB": {
-            "column": "FrostDays_SON",
-            "type": "numeric",
-            "rules": {
-                "Well Suited": ("<", 1),
-                "Suited": ("between", (1, 2)),
-                "Moderately Suited": ("between", (2, 3)),
-                "Unsuitable": (">", 3),
-            },
-        },      
-        "GDD": {
-            "column": "GrowingDegreeDays",
-            "type": "numeric",
-            "rules": {
-                "Well Suited": (">", 1400),
-                "Suited": ("between", (1300, 1400)),
-                "Moderately Suited": ("between", (1100, 1300)),
-                "Unsuitable": ("<", 1100),
-            },
-        },  
-        "ECS": {
-            "column": "Salinity",
-            "type": "numeric",
-            "rules": {
-                "Well Suited": ("==", 0),
-                "Unsuitable": ("==", 1),
-            },
-        },
+        },             
     }
 }
 

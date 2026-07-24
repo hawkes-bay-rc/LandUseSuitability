@@ -4,7 +4,7 @@ Created on Tue Jul  7 10:54:37 2026
 
 @author: Ashton.Eaves
 """
-# In anaconda prompt open env: conda activate h3raster
+# In anaconda prompt open env: conda activate h3raster2
 # Then run spyder
 
 ### Conditional Statements for Crop Suitability ###############################
@@ -128,10 +128,12 @@ rule_names = {
     "DRC": "Drainage",
     "PWC": "Plant available water",
     "STN": "Topsoil stones",
-    "FFB": "SON frost days",
-    "FFH": "MAM frost days",
-    "GDD": "Growing Degree Days",
-    "ESC": "Salinity"
+    "ECS": "Salinity",
+    "HFL": "Heat stress",
+    "MET": "Mean temp",
+    "MNT": "Min temp",
+    "MXT": "Max temp",
+    "PHH": "pH"
 }
 
 # ---------------------------------------------------------------------------
@@ -261,7 +263,7 @@ crop_rules = {
             },
         },
         "MXT": {
-            "column": "MaxTemp_SON",
+            "column": "MaxTemp_DJF",
             "type": "numeric",
             "rules": {
                 "Well Suited": (">", 20),
