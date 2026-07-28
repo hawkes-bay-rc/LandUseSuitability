@@ -264,7 +264,7 @@ for crop, ruleset in crop_rules.items():
             )
 
 # ---------------------------------------------------------------------------
-# Suitability scoring and final limiting class
+# Suitability scoring: mean score plus hard limiting constraints
 # ---------------------------------------------------------------------------
 
 score_map = {
@@ -274,12 +274,32 @@ score_map = {
     "Unsuitable": 4,
 }
 
-reverse_score_map = {v: k for k, v in score_map.items()}
+def mean_score_to_class(score):
+    """Convert the mean criterion score into an overall suitability class."""
+    if pd.isna(score):
+        return pd.NA
+    elif score < 1.5:
+        return "Well Suited"
+    elif score < 2.5:
+        return "Suited"
+    elif score < 3.5:
+        return "Moderately Suited"
+    else:
+        return "Unsuitable"
+
+
+# Rule IDs that cannot be averaged away when classified as Unsuitable.
+# Adjust these separately for each crop.
+hard_exclusion_rules = {
+    "MaizeGrain": ["SLP", "PRD", "DRC"],
+}
+
 
 for crop, ruleset in crop_rules.items():
 
     score_cols = []
 
+    # Convert each criterion class to a numeric score
     for rule_id in ruleset.keys():
         class_col = f"{crop}_{rule_id}"
         score_col = f"{class_col}_score"
@@ -287,18 +307,81 @@ for crop, ruleset in crop_rules.items():
         df[score_col] = df[class_col].map(score_map)
         score_cols.append(score_col)
 
-    df[f"{crop}_FinalScore"] = df[score_cols].max(axis=1)
-    df[f"{crop}_FinalClass"] = df[f"{crop}_FinalScore"].map(reverse_score_map)
+    # Mean score across all available criteria
+    df[f"{crop}_MeanScore"] = (
+        df[score_cols]
+        .mean(axis=1, skipna=True)
+        .round(2)
+    )
 
-    df[f"{crop}_LimitingFactor"] = df[score_cols].idxmax(axis=1)
+    # Initial class based on mean score
+    df[f"{crop}_FinalClass"] = (
+        df[f"{crop}_MeanScore"]
+        .apply(mean_score_to_class)
+    )
 
-    df[f"{crop}_LimitingFactor"] = (
-        df[f"{crop}_LimitingFactor"]
+    # Identify applicable hard-exclusion fields
+    exclusion_rule_ids = hard_exclusion_rules.get(crop, [])
+
+    exclusion_cols = [
+        f"{crop}_{rule_id}"
+        for rule_id in exclusion_rule_ids
+        if f"{crop}_{rule_id}" in df.columns
+    ]
+
+    if exclusion_cols:
+
+        # A row is excluded where any hard constraint is Unsuitable
+        hard_exclusion_mask = (
+            df[exclusion_cols]
+            .eq("Unsuitable")
+            .any(axis=1)
+        )
+
+        # Hard constraints override the mean class
+        df.loc[
+            hard_exclusion_mask,
+            f"{crop}_FinalClass"
+        ] = "Unsuitable"
+
+        # Record all hard limiting factors
+        def get_hard_limiting_factors(row):
+            limiting_rules = []
+
+            for rule_id in exclusion_rule_ids:
+                class_col = f"{crop}_{rule_id}"
+
+                if (
+                    class_col in row.index
+                    and row[class_col] == "Unsuitable"
+                ):
+                    limiting_rules.append(
+                        rule_names.get(rule_id, rule_id)
+                    )
+
+            return "; ".join(limiting_rules) if limiting_rules else pd.NA
+
+        df[f"{crop}_HardLimitingFactor"] = df.apply(
+            get_hard_limiting_factors,
+            axis=1,
+        )
+
+    else:
+        df[f"{crop}_HardLimitingFactor"] = pd.NA
+
+    # Optional: retain the worst individual criterion for interpretation
+    df[f"{crop}_WorstScore"] = df[score_cols].max(
+        axis=1,
+        skipna=True,
+    )
+
+    df[f"{crop}_WorstCriterion"] = (
+        df[score_cols]
+        .idxmax(axis=1)
         .str.replace(f"{crop}_", "", regex=False)
         .str.replace("_score", "", regex=False)
         .map(rule_names)
     )
-
 # ---------------------------------------------------------------------------
 # Export
 # ---------------------------------------------------------------------------
