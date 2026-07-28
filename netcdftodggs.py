@@ -22,6 +22,14 @@ Created on Wed Jul 22 14:21:11 2026
 #
 # The H3 CSV is processed in chunks so approximately 49 million cells do not
 # need to be held in memory at once.
+#
+# For every NetCDF input, the script prints:
+#   - dataset dimensions and coordinates;
+#   - data-variable names;
+#   - variable dtype, shape, dimensions, units and long name;
+#   - coordinate ranges;
+#   - selected climate variable;
+#   - valid climate-value range.
 ###############################################################################
 
 import os
@@ -63,71 +71,92 @@ frost_folder = (
     r"\NIWA_Climate_Change_Projections_2024"
     r"\Individual_Variables\Number_Frost_Days"
 )
+
 gdd_folder = (
     r"\\fileenviro\Esci\Climate"
     r"\NIWA_Climate_Change_Projections_2024"
     r"\Individual_Variables\Growing_Degree_Days"
 )
+
 hfl_folder = (
     r"\\fileenviro\Esci\Climate"
     r"\NIWA_Climate_Change_Projections_2024"
     r"\Individual_Variables\Number_Very_Hot_Days_30deg"
 )
+
 met_folder = (
     r"\\fileenviro\Esci\Climate"
     r"\NIWA_Climate_Change_Projections_2024"
     r"\Individual_Variables\Average_Daily_AirT_Tmean"
 )
+
 mnt_folder = (
     r"\\fileenviro\Esci\Climate"
     r"\NIWA_Climate_Change_Projections_2024"
     r"\Individual_Variables\Average_Daily_AirT_Tmin"
 )
+
 mxt_folder = (
     r"\\fileenviro\Esci\Climate"
     r"\NIWA_Climate_Change_Projections_2024"
     r"\Individual_Variables\Average_Daily_AirT_TMax"
 )
+
 rah_folder = (
     r"\\fileenviro\Esci\Climate"
     r"\NIWA_Climate_Change_Projections_2024"
     r"\Individual_Variables\Heavy_Rainfall"
 )
 
+
+# =============================================================================
+# NetCDF input files
+# =============================================================================
+
 # Each dictionary value must be the complete path to one NetCDF file.
+# The dictionary key becomes the output CSV field name.
+
 netcdf_files = {
     "FrostDays_MAM": os.path.join(
         frost_folder,
         "FD_historical_MMM_CCAM_base_bp1995-2014_MAM_NZ5km.nc",
     ),
+
     "FrostDays_SON": os.path.join(
         frost_folder,
         "FD_historical_MMM_CCAM_base_bp1995-2014_SON_NZ5km.nc",
     ),
+
     "GrowingDegreeDays": os.path.join(
         gdd_folder,
         "GDD10_historical_MMM_CCAM_base_bp1995-2014_ANN_NZ5km.nc",
     ),
+
     "HeatStress_DJF": os.path.join(
         hfl_folder,
         "TX30_historical_MMM_CCAM_base_bp1995-2014_DJF_NZ5km.nc",
     ),
+
     "MeanTemp_SON": os.path.join(
         met_folder,
         "T_historical_MMM_CCAM_base_bp1995-2014_SON_NZ5km.nc",
     ),
+
     "MinTemp_SON": os.path.join(
         mnt_folder,
         "TN_historical_MMM_CCAM_base_bp1995-2014_SON_NZ5km.nc",
     ),
+
     "MaxTemp_SON": os.path.join(
         mxt_folder,
         "TX_historical_MMM_CCAM_base_bp1995-2014_SON_NZ5km.nc",
     ),
+
     "MaxTemp_DJF": os.path.join(
         mxt_folder,
         "TX_historical_MMM_CCAM_base_bp1995-2014_DJF_NZ5km.nc",
     ),
+
     "HarvestRainfall_DJF": os.path.join(
         rah_folder,
         "R99pVAL_historical_MMM_CCAM_base_bp1995-2014_DJF_NZ5km.nc",
@@ -164,8 +193,7 @@ def find_data_variable(dataset):
     """
     Identify the main two-dimensional climate data variable.
 
-    Coordinate, projection and bounds variables are excluded. This works for
-    both frost-day and growing-degree-day NetCDF files.
+    Coordinate, projection and bounds variables are excluded.
     """
 
     excluded_names = {
@@ -195,8 +223,8 @@ def find_data_variable(dataset):
         if variable_name.lower() in excluded_names:
             continue
 
-        # The climate variable must retain at least two dimensions before
-        # singleton dimensions such as time are removed.
+        # Climate layers usually have latitude and longitude dimensions,
+        # sometimes plus a one-value time dimension.
         if variable.ndim >= 2:
             candidates.append(variable_name)
 
@@ -206,14 +234,27 @@ def find_data_variable(dataset):
             f"Available data variables: {list(dataset.data_vars)}"
         )
 
-    print(f"Candidate data variables: {candidates}")
+    print(f"\nCandidate climate variables: {candidates}")
 
-    # Prefer variables with familiar climate-variable names.
+    # Prefer familiar climate-variable names when there is more than one
+    # candidate.
     preferred_terms = [
         "frost",
         "gdd",
         "degree",
+        "tx30",
+        "heat",
+        "hot",
+        "r99",
+        "rain",
+        "temperature",
+        "temp",
+        "tmean",
+        "tmin",
+        "tmax",
         "fd",
+        "tn",
+        "tx",
     ]
 
     for term in preferred_terms:
@@ -221,8 +262,119 @@ def find_data_variable(dataset):
             if term in variable_name.lower():
                 return variable_name
 
-    # If only one viable spatial variable exists, use it.
+    # If no preferred name is found, use the first viable spatial variable.
     return candidates[0]
+
+
+def print_netcdf_metadata(dataset, nc_path):
+    """
+    Print dimensions, coordinates, variables, metadata and coordinate ranges
+    for one NetCDF dataset.
+    """
+
+    print("\n" + "=" * 79)
+    print(f"NETCDF METADATA: {os.path.basename(nc_path)}")
+    print("=" * 79)
+
+    print("\nDataset summary")
+    print(dataset)
+
+    print("\nDataset dimensions")
+    print(dict(dataset.sizes))
+
+    print("\nCoordinate names")
+    print(list(dataset.coords))
+
+    print("\nData variables")
+    print(list(dataset.data_vars))
+
+    print("\nVariable metadata")
+
+    for variable_name in dataset.data_vars:
+
+        variable = dataset[variable_name]
+        attributes = variable.attrs
+
+        print(f"\n{variable_name}")
+        print(f"  dtype         : {variable.dtype}")
+        print(f"  shape         : {variable.shape}")
+        print(f"  dimensions    : {variable.dims}")
+        print(f"  units         : {attributes.get('units', '—')}")
+        print(f"  long_name     : {attributes.get('long_name', '—')}")
+        print(f"  standard_name : {attributes.get('standard_name', '—')}")
+        print(f"  description   : {attributes.get('description', '—')}")
+
+        # _FillValue may be held in encoding after xarray decodes the data.
+        fill_value = attributes.get(
+            "_FillValue",
+            variable.encoding.get("_FillValue", "—"),
+        )
+
+        missing_value = attributes.get(
+            "missing_value",
+            variable.encoding.get("missing_value", "—"),
+        )
+
+        print(f"  fill_value    : {fill_value}")
+        print(f"  missing_value : {missing_value}")
+
+    print("\nCoordinate ranges")
+
+    for coordinate_name in dataset.coords:
+
+        coordinate = dataset[coordinate_name]
+        values = coordinate.values
+
+        if values.size == 0:
+            print(f"\ncoord {coordinate_name}: empty")
+            continue
+
+        try:
+            valid_values = values[
+                pd.notna(values)
+            ]
+
+            if valid_values.size == 0:
+                print(
+                    f"\ncoord {coordinate_name}: "
+                    f"no valid values (n={values.size})"
+                )
+                continue
+
+            minimum = valid_values.min()
+            maximum = valid_values.max()
+
+            print(
+                f"\ncoord {coordinate_name}: "
+                f"{minimum} -> {maximum} "
+                f"(n={values.size}, shape={values.shape})"
+            )
+
+            # Print an approximate coordinate interval for one-dimensional,
+            # numeric coordinate arrays.
+            if coordinate.ndim == 1 and valid_values.size > 1:
+
+                try:
+                    numeric_values = valid_values.astype(np.float64)
+
+                    differences = np.diff(numeric_values)
+
+                    if differences.size > 0:
+                        print(
+                            f"  approximate step: "
+                            f"{np.nanmedian(differences)}"
+                        )
+
+                except (TypeError, ValueError):
+                    # Time and object coordinates may not convert directly.
+                    pass
+
+        except (TypeError, ValueError):
+            print(
+                f"\ncoord {coordinate_name}: "
+                f"range could not be calculated "
+                f"(n={values.size}, shape={values.shape})"
+            )
 
 
 def nearest_indices(coordinate_values, query_values):
@@ -301,6 +453,9 @@ def nearest_indices(coordinate_values, query_values):
 def load_netcdf_grid(nc_path):
     """
     Load one regular latitude/longitude NetCDF into a compact lookup object.
+
+    The metadata-reporting function is called here so each NetCDF is opened
+    only once.
     """
 
     with xr.open_dataset(
@@ -309,11 +464,11 @@ def load_netcdf_grid(nc_path):
         mask_and_scale=True,
     ) as dataset:
 
-        print("\n" + "-" * 79)
-        print(f"Loading NetCDF: {os.path.basename(nc_path)}")
-        print(f"Dataset dimensions: {dict(dataset.sizes)}")
-        print(f"Coordinates: {list(dataset.coords)}")
-        print(f"Data variables: {list(dataset.data_vars)}")
+        # Print complete metadata for this input.
+        print_netcdf_metadata(
+            dataset=dataset,
+            nc_path=nc_path,
+        )
 
         latitude_name = find_coordinate_name(
             dataset,
@@ -346,6 +501,11 @@ def load_netcdf_grid(nc_path):
 
         data_variable_name = find_data_variable(dataset)
 
+        print("\nSelected NetCDF components")
+        print(f"  latitude variable  : {latitude_name}")
+        print(f"  longitude variable : {longitude_name}")
+        print(f"  climate variable   : {data_variable_name}")
+
         data_array = (
             dataset[data_variable_name]
             .squeeze(drop=True)
@@ -361,11 +521,10 @@ def load_netcdf_grid(nc_path):
             .squeeze(drop=True)
         )
 
-        print(f"Latitude variable: {latitude_name}")
-        print(f"Longitude variable: {longitude_name}")
-        print(f"Climate variable: {data_variable_name}")
-        print(f"Climate dimensions after squeeze: {data_array.dims}")
-        print(f"Climate shape after squeeze: {data_array.shape}")
+        print(f"  climate dimensions : {data_array.dims}")
+        print(f"  climate shape      : {data_array.shape}")
+        print(f"  latitude shape     : {latitude.shape}")
+        print(f"  longitude shape    : {longitude.shape}")
 
         if latitude.ndim != 1 or longitude.ndim != 1:
             raise ValueError(
@@ -422,7 +581,7 @@ def load_netcdf_grid(nc_path):
             copy=False,
         )
 
-        # Remove any undecoded fill values.
+        # Remove any undecoded fill or invalid values.
         invalid_values = (
             ~np.isfinite(climate_values)
             | (np.abs(climate_values) > 1.0e20)
@@ -430,36 +589,62 @@ def load_netcdf_grid(nc_path):
 
         climate_values[invalid_values] = np.nan
 
-        print(f"Final grid shape: {climate_values.shape}")
+        print("\nPrepared lookup grid")
+        print(f"  final grid shape : {climate_values.shape}")
 
         print(
-            "Latitude range: "
+            "  latitude range   : "
             f"{np.nanmin(latitude_values):.6f} to "
             f"{np.nanmax(latitude_values):.6f}"
         )
 
         print(
-            "Longitude range: "
+            "  longitude range  : "
             f"{np.nanmin(longitude_values):.6f} to "
             f"{np.nanmax(longitude_values):.6f}"
         )
 
-        finite_values = climate_values[np.isfinite(climate_values)]
+        finite_values = climate_values[
+            np.isfinite(climate_values)
+        ]
 
         if len(finite_values) > 0:
             print(
-                "Climate value range: "
+                "  climate range    : "
                 f"{finite_values.min():.4f} to "
                 f"{finite_values.max():.4f}"
             )
+
+            print(
+                "  climate mean     : "
+                f"{finite_values.mean():.4f}"
+            )
+
+            print(
+                "  valid cells      : "
+                f"{len(finite_values):,} of "
+                f"{climate_values.size:,}"
+            )
+
         else:
-            print("Warning: no valid climate values were found.")
+            print(
+                "  warning          : "
+                "no valid climate values were found"
+            )
 
         return {
             "latitude": latitude_values,
             "longitude": longitude_values,
             "values": climate_values,
             "variable_name": data_variable_name,
+            "units": dataset[data_variable_name].attrs.get(
+                "units",
+                "",
+            ),
+            "long_name": dataset[data_variable_name].attrs.get(
+                "long_name",
+                "",
+            ),
         }
 
 
@@ -586,9 +771,11 @@ if not netcdf_files:
         "No NetCDF inputs have been configured."
     )
 
+print("\nConfigured climate inputs")
+
 for output_field, nc_path in netcdf_files.items():
 
-    print(f"Checking {output_field}: {nc_path}")
+    print(f"  {output_field}: {nc_path}")
 
     if not os.path.isfile(nc_path):
         raise FileNotFoundError(
@@ -613,9 +800,10 @@ netcdf_grids = {}
 
 for output_field, nc_path in netcdf_files.items():
 
-    print("\n" + "=" * 79)
-    print(f"Preparing input: {output_field}")
+    print("\n" + "#" * 79)
+    print(f"PREPARING OUTPUT FIELD: {output_field}")
     print(f"Path: {nc_path}")
+    print("#" * 79)
 
     netcdf_grids[output_field] = load_netcdf_grid(
         nc_path
@@ -623,7 +811,7 @@ for output_field, nc_path in netcdf_files.items():
 
 
 # =============================================================================
-# Prepare the output
+# Prepare output
 # =============================================================================
 
 if os.path.exists(output_csv):
@@ -737,7 +925,8 @@ for chunk_number, chunk_df in enumerate(
                 f"{output_field}: "
                 f"{valid_count:,} valid; "
                 f"min={valid_values.min():.4f}; "
-                f"max={valid_values.max():.4f}"
+                f"max={valid_values.max():.4f}; "
+                f"mean={valid_values.mean():.4f}"
             )
 
         else:
@@ -750,7 +939,11 @@ for chunk_number, chunk_df in enumerate(
         *netcdf_files.keys(),
     ]
 
-    chunk_df[output_fields].to_csv(
+    output_chunk = chunk_df[
+        output_fields
+    ].copy()
+
+    output_chunk.to_csv(
         output_csv,
         mode="a",
         header=not header_written,
@@ -800,13 +993,15 @@ else:
     print(f"Output saved to: {output_csv}")
     print(f"Rows written: {total_rows:,}")
 
+    print("\nValid output values")
+
     for output_field, valid_count in total_valid.items():
         print(
-            f"{output_field} valid values: "
+            f"  {output_field}: "
             f"{valid_count:,} of {total_rows:,}"
         )
 
 print(
-    f"Total processing time: "
+    f"\nTotal processing time: "
     f"{elapsed_time / 60:.2f} minutes"
 )
