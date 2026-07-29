@@ -264,7 +264,8 @@ for crop, ruleset in crop_rules.items():
             )
 
 # ---------------------------------------------------------------------------
-# Suitability scoring: mean score plus hard limiting constraints
+# Suitability scoring:
+# mean score + hard limiting constraints + normal limiting factors
 # ---------------------------------------------------------------------------
 
 score_map = {
@@ -274,8 +275,10 @@ score_map = {
     "Unsuitable": 4,
 }
 
+
 def mean_score_to_class(score):
     """Convert the mean criterion score into an overall suitability class."""
+
     if pd.isna(score):
         return pd.NA
     elif score < 1.5:
@@ -288,8 +291,8 @@ def mean_score_to_class(score):
         return "Unsuitable"
 
 
-# Rule IDs that cannot be averaged away when classified as Unsuitable.
-# Adjust these separately for each crop.
+# Rules that cannot be averaged away when they are Unsuitable.
+# These can be set separately for each crop.
 hard_exclusion_rules = {
     "MaizeGrain": ["SLP", "PRD", "DRC"],
 }
@@ -299,28 +302,98 @@ for crop, ruleset in crop_rules.items():
 
     score_cols = []
 
+    # -----------------------------------------------------------------------
     # Convert each criterion class to a numeric score
+    # -----------------------------------------------------------------------
+
     for rule_id in ruleset.keys():
+
         class_col = f"{crop}_{rule_id}"
         score_col = f"{class_col}_score"
 
         df[score_col] = df[class_col].map(score_map)
         score_cols.append(score_col)
 
-    # Mean score across all available criteria
+    # -----------------------------------------------------------------------
+    # Calculate the mean suitability score
+    # -----------------------------------------------------------------------
+
     df[f"{crop}_MeanScore"] = (
         df[score_cols]
         .mean(axis=1, skipna=True)
         .round(2)
     )
 
-    # Initial class based on mean score
+    # Initial overall class based on the mean score
     df[f"{crop}_FinalClass"] = (
         df[f"{crop}_MeanScore"]
         .apply(mean_score_to_class)
     )
 
-    # Identify applicable hard-exclusion fields
+    # -----------------------------------------------------------------------
+    # Normal limiting factor
+    #
+    # This is the worst-scoring criterion, as used previously.
+    # All criteria tied for the worst score are retained.
+    # -----------------------------------------------------------------------
+
+    df[f"{crop}_WorstScore"] = (
+        df[score_cols]
+        .max(axis=1, skipna=True)
+    )
+
+    def get_limiting_factors(row):
+        """Return all criteria tied for the worst individual score."""
+
+        worst_score = row[f"{crop}_WorstScore"]
+
+        if pd.isna(worst_score):
+            return pd.NA
+
+        limiting_rules = []
+
+        for rule_id in ruleset.keys():
+
+            score_col = f"{crop}_{rule_id}_score"
+
+            if (
+                score_col in row.index
+                and pd.notna(row[score_col])
+                and row[score_col] == worst_score
+            ):
+                limiting_rules.append(
+                    rule_names.get(rule_id, rule_id)
+                )
+
+        return (
+            "; ".join(limiting_rules)
+            if limiting_rules
+            else pd.NA
+        )
+
+    df[f"{crop}_LimitingFactor"] = df.apply(
+        get_limiting_factors,
+        axis=1,
+    )
+
+    # Optional: record the class associated with the normal limiting factor
+    reverse_score_map = {
+        value: key
+        for key, value in score_map.items()
+    }
+
+    df[f"{crop}_LimitingClass"] = (
+        df[f"{crop}_WorstScore"]
+        .map(reverse_score_map)
+    )
+
+    # -----------------------------------------------------------------------
+    # Hard limiting factors
+    #
+    # Any hard-exclusion criterion classified as Unsuitable overrides
+    # the mean suitability class.
+    # -----------------------------------------------------------------------
+
     exclusion_rule_ids = hard_exclusion_rules.get(crop, [])
 
     exclusion_cols = [
@@ -331,24 +404,25 @@ for crop, ruleset in crop_rules.items():
 
     if exclusion_cols:
 
-        # A row is excluded where any hard constraint is Unsuitable
         hard_exclusion_mask = (
             df[exclusion_cols]
             .eq("Unsuitable")
             .any(axis=1)
         )
 
-        # Hard constraints override the mean class
+        # Hard exclusions override the mean-based class
         df.loc[
             hard_exclusion_mask,
-            f"{crop}_FinalClass"
+            f"{crop}_FinalClass",
         ] = "Unsuitable"
 
-        # Record all hard limiting factors
         def get_hard_limiting_factors(row):
+            """Return all hard-exclusion criteria that are Unsuitable."""
+
             limiting_rules = []
 
             for rule_id in exclusion_rule_ids:
+
                 class_col = f"{crop}_{rule_id}"
 
                 if (
@@ -359,29 +433,25 @@ for crop, ruleset in crop_rules.items():
                         rule_names.get(rule_id, rule_id)
                     )
 
-            return "; ".join(limiting_rules) if limiting_rules else pd.NA
+            return (
+                "; ".join(limiting_rules)
+                if limiting_rules
+                else pd.NA
+            )
 
         df[f"{crop}_HardLimitingFactor"] = df.apply(
             get_hard_limiting_factors,
             axis=1,
         )
 
+        # Useful Boolean field for filtering and GIS symbology
+        df[f"{crop}_HardExcluded"] = hard_exclusion_mask
+
     else:
+
         df[f"{crop}_HardLimitingFactor"] = pd.NA
-
-    # Optional: retain the worst individual criterion for interpretation
-    df[f"{crop}_WorstScore"] = df[score_cols].max(
-        axis=1,
-        skipna=True,
-    )
-
-    df[f"{crop}_WorstCriterion"] = (
-        df[score_cols]
-        .idxmax(axis=1)
-        .str.replace(f"{crop}_", "", regex=False)
-        .str.replace("_score", "", regex=False)
-        .map(rule_names)
-    )
+        df[f"{crop}_HardExcluded"] = False
+        
 # ---------------------------------------------------------------------------
 # Export
 # ---------------------------------------------------------------------------

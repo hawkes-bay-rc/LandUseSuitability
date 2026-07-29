@@ -20,7 +20,7 @@ from pyproj import Transformer
 # User settings
 # ==========================
 
-h3_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\1_Data\H3Res12.csv"
+h3_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\1_Data\H3Res11.csv"
 
 
 #raster_path = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\1_Data\MeanAnnualRainfall.tif"

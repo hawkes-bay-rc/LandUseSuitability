@@ -47,7 +47,7 @@ import xarray as xr
 
 h3_csv = (
     r"D:\Land\GIS_DATA\Landuse\LanduseSuitability"
-    r"\1_Data\H3Res12.csv"
+    r"\1_Data\H3Res11.csv"
 )
 
 output_csv = (
