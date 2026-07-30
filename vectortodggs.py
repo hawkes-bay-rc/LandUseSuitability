@@ -5,8 +5,8 @@ Created on Thu Jul 30 14:58:42 2026
 @author: Ashton.Eaves
 """
 
-###### raster2dggs ###########################################################
-### adapted from:  https://github.com/manaakiwhenua/raster2dggs/tree/master
+###### vector2dggs ###########################################################
+
 ##############################################################################
 
 # In anaconda prompt open env: conda activate h3raster
