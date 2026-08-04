@@ -38,60 +38,180 @@ df.columns = df.columns.str.strip()
 # Generic classifiers
 # ---------------------------------------------------------------------------
 
-def classify_numeric(value, rules):
-    """Classify numeric values using threshold rules."""
+def classify_numeric(series, rules):
+    """
+    Classify a numeric pandas Series using operator-based rules.
 
-    if pd.isna(value):
-        return np.nan
+    Supported formats include:
 
-    try:
-        value = float(value)
-    except (TypeError, ValueError):
-        return np.nan
+        ("<", 100)
+        ("<=", 100)
+        (">", 100)
+        (">=", 100)
+        ("==", 0)
+        ("!=", 0)
 
-    for suitability, condition in rules.items():
-        op, threshold = condition
+        ("between", 100, 200)
 
-        if op == "==" and value == threshold:
-            return suitability
-        elif op == "!=" and value != threshold:
-            return suitability
-        elif op == ">" and value > threshold:
-            return suitability
-        elif op == ">=" and value >= threshold:
-            return suitability
-        elif op == "<" and value < threshold:
-            return suitability
-        elif op == "<=" and value <= threshold:
-            return suitability
-        elif op == "between":
-            low, high = threshold
-            if low <= value <= high:
-                return suitability
+    or:
+
+        ("between", (100, 200))
+    """
+
+    numeric_series = pd.to_numeric(
+        series,
+        errors="coerce",
+    )
+
+    result = pd.Series(
+        pd.NA,
+        index=series.index,
+        dtype="object",
+    )
+
+    for suitability_class, rule in rules.items():
+
+        if not isinstance(rule, (tuple, list)) or len(rule) < 2:
+            raise ValueError(
+                f"Invalid numeric rule for '{suitability_class}': "
+                f"{rule}"
+            )
+
+        operator = rule[0]
+
+        if operator == ">":
+
+            threshold = rule[1]
+            mask = numeric_series > threshold
+
+        elif operator == ">=":
+
+            threshold = rule[1]
+            mask = numeric_series >= threshold
+
+        elif operator == "<":
+
+            threshold = rule[1]
+            mask = numeric_series < threshold
+
+        elif operator == "<=":
+
+            threshold = rule[1]
+            mask = numeric_series <= threshold
+
+        elif operator == "==":
+
+            threshold = rule[1]
+            mask = numeric_series == threshold
+
+        elif operator == "!=":
+
+            threshold = rule[1]
+            mask = numeric_series != threshold
+
+        elif operator == "between":
+
+            # Supports:
+            # ("between", lower, upper)
+            if len(rule) == 3:
+                lower = rule[1]
+                upper = rule[2]
+
+            # Supports:
+            # ("between", (lower, upper))
+            elif (
+                len(rule) == 2
+                and isinstance(rule[1], (tuple, list))
+                and len(rule[1]) == 2
+            ):
+                lower, upper = rule[1]
+
+            else:
+                raise ValueError(
+                    f"Invalid 'between' rule for "
+                    f"'{suitability_class}': {rule}. "
+                    f"Use ('between', lower, upper) or "
+                    f"('between', (lower, upper))."
+                )
+
+            mask = numeric_series.between(
+                lower,
+                upper,
+                inclusive="both",
+            )
+
         else:
-            if op not in {"==", "!=", ">", ">=", "<", "<=", "between"}:
-                raise ValueError(f"Unsupported operator: {op}")
+            raise ValueError(
+                f"Unsupported numeric operator "
+                f"'{operator}' for '{suitability_class}'. "
+                f"Full rule: {rule}"
+            )
 
-    return np.nan
+        # Do not classify missing source values
+        mask = mask & numeric_series.notna()
 
+        result.loc[mask] = suitability_class
 
-def classify_categorical(value, rules):
-    """Classify text or integer categories."""
-
-    if pd.isna(value):
-        return np.nan
-
-    value = str(value).strip().lower()
-
-    for suitability, valid_values in rules.items():
-        valid_values = [str(v).strip().lower() for v in valid_values]
-
-        if value in valid_values:
-            return suitability
-
-    return np.nan
+    return result
 
 
+def classify_categorical(series, rules):
+    """
+    Classify a categorical pandas Series.
+
+    Matching is case-insensitive and ignores:
+    - leading/trailing whitespace
+    - repeated spaces
+    - non-breaking spaces
+    - en dashes and em dashes
+    """
+
+    normalised_series = (
+        series
+        .astype("string")
+        .str.replace("\xa0", " ", regex=False)
+        .str.replace("–", "-", regex=False)
+        .str.replace("—", "-", regex=False)
+        .str.strip()
+        .str.lower()
+        .str.replace(r"\s+", " ", regex=True)
+    )
+
+    result = pd.Series(
+        pd.NA,
+        index=series.index,
+        dtype="object",
+    )
+
+    for suitability_class, accepted_values in rules.items():
+
+        normalised_values = []
+
+        for value in accepted_values:
+
+            if pd.isna(value):
+                continue
+
+            normalised_value = (
+                str(value)
+                .replace("\xa0", " ")
+                .replace("–", "-")
+                .replace("—", "-")
+                .strip()
+                .lower()
+            )
+
+            normalised_value = " ".join(
+                normalised_value.split()
+            )
+
+            normalised_values.append(normalised_value)
+
+        mask = normalised_series.isin(normalised_values)
+
+        result.loc[mask] = suitability_class
+
+    return result
 # ---------------------------------------------------------------------------
 # Rule names for output
 # ---------------------------------------------------------------------------
@@ -238,7 +358,7 @@ crop_rules = {
 }
 
 # ---------------------------------------------------------------------------
-# Apply rules
+# Apply crop suitability rules
 # ---------------------------------------------------------------------------
 
 for crop, ruleset in crop_rules.items():
@@ -249,18 +369,32 @@ for crop, ruleset in crop_rules.items():
         output_col = f"{crop}_{rule_id}"
 
         if column not in df.columns:
-            df[output_col] = np.nan
-            print(f"Missing column for {crop} {rule_id}: {column}")
+            print(
+                f"Missing column for {crop} {rule_id}: "
+                f"{column}"
+            )
+
+            df[output_col] = pd.NA
             continue
 
         if rule["type"] == "numeric":
-            df[output_col] = df[column].apply(
-                lambda x: classify_numeric(x, rule["rules"])
+
+            df[output_col] = classify_numeric(
+                df[column],
+                rule["rules"],
             )
 
         elif rule["type"] == "categorical":
-            df[output_col] = df[column].apply(
-                lambda x: classify_categorical(x, rule["rules"])
+
+            df[output_col] = classify_categorical(
+                df[column],
+                rule["rules"],
+            )
+
+        else:
+            raise ValueError(
+                f"Unsupported rule type: {rule['type']} "
+                f"for {crop} {rule_id}"
             )
 
 # ---------------------------------------------------------------------------
@@ -281,11 +415,11 @@ def mean_score_to_class(score):
 
     if pd.isna(score):
         return pd.NA
-    elif score < 1.5:
+    elif score < 2:
         return "Well Suited"
-    elif score < 2.5:
+    elif score < 3:
         return "Suited"
-    elif score < 3.5:
+    elif score < 4:
         return "Moderately Suited"
     else:
         return "Unsuitable"
@@ -417,22 +551,24 @@ for crop, ruleset in crop_rules.items():
         ] = "Unsuitable"
 
         def get_hard_limiting_factors(row):
-            """Return all hard-exclusion criteria that are Unsuitable."""
-
+            """Return all hard-exclusion criteria classified as Unsuitable."""
+        
             limiting_rules = []
-
+        
             for rule_id in exclusion_rule_ids:
-
+        
                 class_col = f"{crop}_{rule_id}"
-
-                if (
-                    class_col in row.index
-                    and row[class_col] == "Unsuitable"
-                ):
+        
+                if class_col not in row.index:
+                    continue
+        
+                value = row[class_col]
+        
+                if pd.notna(value) and value == "Unsuitable":
                     limiting_rules.append(
                         rule_names.get(rule_id, rule_id)
                     )
-
+        
             return (
                 "; ".join(limiting_rules)
                 if limiting_rules
@@ -451,7 +587,28 @@ for crop, ruleset in crop_rules.items():
 
         df[f"{crop}_HardLimitingFactor"] = pd.NA
         df[f"{crop}_HardExcluded"] = False
-        
+
+# -----------------------------------------------------------------------
+# Exclude areas with no soil information
+# -----------------------------------------------------------------------
+
+no_soil_mask = df["SMU"].isna()
+
+df.loc[
+    no_soil_mask,
+    f"{crop}_FinalClass"
+] = "Unsuitable"
+
+df.loc[
+    no_soil_mask,
+    f"{crop}_HardExcluded"
+] = True
+
+df.loc[
+    no_soil_mask,
+    f"{crop}_HardLimitingFactor"
+] = "No soil mapping"        
+
 # ---------------------------------------------------------------------------
 # Export
 # ---------------------------------------------------------------------------

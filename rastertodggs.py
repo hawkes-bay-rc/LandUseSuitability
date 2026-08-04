@@ -25,7 +25,7 @@ h3_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\1_Data\H3Res11.csv"
 ### Select one raster at a time: 
     
 #raster_path = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\1_Data\MeanAnnualRainfall.tif"
-raster_path = r"\\gisdalton\gishub3\Land\HawkesBayRegion_LiDAR_2020\LUCWorkStream\D1\hbrc_dem_5m_slope_degrees_r2.tif"
+raster_path = r"\\gisdalton\GIShub3\Land\HawkesBayRegion_LiDAR_2020\fromMWLR\240110\final_slope\hbrc_wairoa_dem_5m_slope_degrees_r2.tif"
 
 #output_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\MeanAnnualRainfall_H3.csv"
 output_csv = r"D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\MeanSlope_H3.csv"
