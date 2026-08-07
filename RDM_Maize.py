@@ -409,17 +409,17 @@ score_map = {
     "Unsuitable": 4,
 }
 
-
+#Split by histogram of draft output:
 def mean_score_to_class(score):
     """Convert the mean criterion score into an overall suitability class."""
 
     if pd.isna(score):
         return pd.NA
-    elif score < 2:
+    elif score < 1.5:
         return "Well Suited"
-    elif score < 3:
+    elif score < 2:
         return "Suited"
-    elif score < 4:
+    elif score < 2.5:
         return "Moderately Suited"
     else:
         return "Unsuitable"
@@ -597,7 +597,7 @@ no_soil_mask = df["SMU"].isna()
 df.loc[
     no_soil_mask,
     f"{crop}_FinalClass"
-] = "Unsuitable"
+] = "Indeterminate"
 
 df.loc[
     no_soil_mask,
@@ -607,7 +607,7 @@ df.loc[
 df.loc[
     no_soil_mask,
     f"{crop}_HardLimitingFactor"
-] = "No soil mapping"        
+] = "Indeterminate"        
 
 # ---------------------------------------------------------------------------
 # Export
