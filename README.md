@@ -1,0 +1,2 @@
+HBRC Land Use Suitability investigates the suitability of crops and trees given climate, soil and topographical considerations. 
+Many of the codes are for converting to DGGS followed by deploying to FME for building spatial relationships. Next the FME output is run through a Robust Decision Making (RDM) matrix to determine the suitability for each DGGS hexagon. A final clean is then administered in FME.  
