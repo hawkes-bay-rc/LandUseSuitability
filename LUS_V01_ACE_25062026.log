@@ -1,0 +1,93 @@
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Current FME version: FME 2025.1.0.0 (20250704 - Build 25606 - WIN64)
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|System Time: 20260811233316 UTC
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME_HOME is 'C:\Program Files\FME\'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME license: FME Form (floating)
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Machine host name is: GISWS1
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|OS Locale Name     : en_NZ
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|OS Locale Encoding : windows-1252
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Process Encoding   : UTF-8
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME API version: '4.0 20250515'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: FME_BASE is 'no'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: FME_MF_DIR is 'D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability/'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: FME_MF_NAME is 'LUS_V01_ACE_25062026.fmw'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: FME_PRODUCT_NAME is 'FME(R) 2025.1.0.0'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Operating System: Microsoft Windows 11 64-bit  (Build 26200)
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Platform: WIN64
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|System Status: 2.15 TB of disk space available in the FME temporary folder (C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wbrun_1786318044642_28784\fmetmp_1d)
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|System Status: 127.15 GB of physical memory available
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|System Status: 508.58 GB of virtual memory available
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|START - ProcessID: 40956, peak process memory usage: 43304 kB, current process memory usage: 43300 kB
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: Command line arguments are `C:\Program Files\FME\fme.exe' `D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability\wb-xlate-1786491195604_28784' `--FME_LAUNCH_VIEWER_APP' `WORKBENCH' `LOG_STANDARDOUT' `YES' `LOG_TIMINGS' `YES' `LogCountServerName' `50153' `LOG_STANDARDOUT' `No' `WORKBENCH_LOG_SERVER' `52468'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: Connection Storage: 'C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Shared folders for formats are : C:\Program Files\FME\datasources;C:\Users\Ashton.Eaves\Documents\FME\Formats
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Shared folders for transformers are : C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\Packages\25606-win64\transformers;C:\Program Files\FME\transformers;C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\FME Store\Transformers
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Shared folders for coordinate systems are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystems
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Shared folders for coordinate system exceptions are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystemExceptions
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Shared folders for coordinate system grid overrides are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystemGridOverrides
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Shared folders for CS-MAP transformation exceptions are : C:\Users\Ashton.Eaves\Documents\FME\CsmapTransformationExceptions
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Shared folders for transformer categories are : C:\Users\Ashton.Eaves\Documents\FME\TransformerCategories
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: No destination coordinate system set
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: Current working folder is `D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: Temporary folder is `C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wbrun_1786318044642_28784\fmetmp_1d', set from environment variable `FME_TEMP'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: Cache folder is 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: FME_HOME is `C:\Program Files\FME\'
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: Start freeing memory when the process exceeds 381.44 GB
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|FME Configuration: Stop freeing memory when the process is below 286.08 GB
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Creating writer for format: 
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Creating reader for format: 
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|MULTI_READER(MULTI_READER): Will fail with first member reader failure
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|MULTI_READER(MULTI_READER): Adding NETCDF Reader with keyword NETCDF_1
+2026-08-12 11:33:16|   0.0|  0.0|INFORM|Using Multi Reader with keyword `MULTI_READER' to read multiple datasets
+2026-08-12 11:33:16|   0.1|  0.1|INFORM|Creating reader for format: NetCDF (Network Common Data Form)
+2026-08-12 11:33:16|   0.1|  0.0|INFORM|Trying to find a DYNAMIC plugin for reader named `NETCDF'
+2026-08-12 11:33:16|   0.1|  0.0|INFORM|NETCDF reader: Opening file 'I:\Climate\NIWA_Climate_Change_Projections_2024\Individual_Variables\Number_Frost_Days\FD_historical_MMM_CCAM_base_bp1995-2014_MAM_NZ5km.nc'
+2026-08-12 11:33:16|   0.1|  0.0|INFORM|Using MultiWriter with keyword `PRIMARY_DEST' to output data (ID_ATTRIBUTE is `multi_writer_id')
+2026-08-12 11:33:16|   0.1|  0.0|INFORM|Writer output will be ordered by value of multi_writer_id
+2026-08-12 11:33:16|   0.2|  0.1|INFORM|The EPSG number of the FME coordinate system 'LL-GD1949-Grid' is '4272'
+2026-08-12 11:33:16|   0.2|  0.0|INFORM|NETCDF reader: Directive '_REVERSE_VERTICAL_ORDER' has the value 'No'
+2026-08-12 11:33:16|   0.2|  0.0|INFORM|FME Configuration: Source coordinate system for reader NETCDF_1[NETCDF] set to `LL-GD1949-Grid' as read from input data
+2026-08-12 11:33:16|   0.2|  0.0|INFORM|Coordinate System `LL-GD1949-Grid' parameters: CS_NAME=`LL-GD1949-Grid' DESC_NM=`New Zealand Geodetic Datum of 1949, Lat-Long, via Grid 2000' DT_NAME=`NZGD49' EPSG_QD=`-1' GROUP=`LL' MAP_SCL=`1' MAX_LAT=`-33.38333333333333' MAX_LNG=`179.78333333333333' MIN_LAT=`-48.15' MIN_LNG=`165.36666666666667' PROJ=`LL' QUAD=`1' SCL_RED=`1' SOURCE=`Land Information New Zealand (www.linz.govt.nz)' UNIT=`DEGREE' ZERO_X=`1.0000000000000003e-9' ZERO_Y=`1.0000000000000003e-9'
+2026-08-12 11:33:16|   0.2|  0.0|INFORM|MULTI_READER(MULTI_READER): Done reading 1 features from 1 readers
+2026-08-12 11:33:16|   0.2|  0.0|INFORM|Emptying factory pipeline
+2026-08-12 11:33:16|   0.2|  0.0|STATS |Router and Unexpected Input Remover (RoutingFactory): Tested 1 input feature(s), wrote 1 output feature(s): 1 matched merge filters, 1 were routed to output, 0 could not be routed.
+2026-08-12 11:33:16|   0.2|  0.0|STATS |Unwanted Router Input Nuker (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |NETCDF_NETCDF_1 Splitter (TeeFactory): Cloned 1 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |CSV_CSV2_2 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.zHawkesBay_SMap_SourceSiblingBaseProperty_Aug2024_GEODATABASE_SDE_4 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.zHawkesBay_SMap_SourceSiblingBasicData_Aug2024_GEODATABASE_SDE_4 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.zHawkesBay_SMap_SourceSiblingLicensed_April2024_GEODATABASE_SDE_4 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.zHawkesBay_SMap_SourceSiblingLicensed_Aug2024_GEODATABASE_SDE_4 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |CSV_CSV2_4 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.HawkesBay_H3Resolution11_GEODATABASE_SDE_1 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.HawkesBay_SMap_GEODATABASE_SDE_6 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |CSV_CSV2_5 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |CSV_CSV2_1 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.HawkesBay_Regional_Boundary_2025_GEODATABASE_SDE_2 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.HawkesBay_AssetManagement_AssetLines_GEODATABASE_SDE_3 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.HawkesBay_DrainageAreas_GEODATABASE_SDE_3 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |GISP.HawkesBay_FundamentalSoils_GEODATABASE_SDE_11 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |Destination Feature Type Routing Correlator (RoutingFactory): Tested 0 input feature(s), wrote 0 output feature(s): 0 matched merge filters, 0 were routed to output, 0 could not be routed.
+2026-08-12 11:33:16|   0.2|  0.0|STATS |Final Output Nuker (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-08-12 11:33:16|   0.2|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-08-12 11:33:16|   0.2|  0.0|STATS |                            Features Read Summary
+2026-08-12 11:33:16|   0.2|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-08-12 11:33:16|   0.2|  0.0|STATS |NETCDF                                                                       1
+2026-08-12 11:33:16|   0.2|  0.0|STATS |==============================================================================
+2026-08-12 11:33:16|   0.2|  0.0|STATS |Total Features Read                                                          1
+2026-08-12 11:33:16|   0.2|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-08-12 11:33:16|   0.2|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-08-12 11:33:16|   0.2|  0.0|STATS |                           Features Written Summary
+2026-08-12 11:33:16|   0.2|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-08-12 11:33:16|   0.2|  0.0|STATS |==============================================================================
+2026-08-12 11:33:16|   0.2|  0.0|STATS |Total Features Written                                                       0
+2026-08-12 11:33:16|   0.2|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-08-12 11:33:16|   0.2|  0.0|WARN  |-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+2026-08-12 11:33:16|   0.2|  0.0|WARN  |-~                                                                             ~-
+2026-08-12 11:33:16|   0.2|  0.0|WARN  |-~      Data caches have been recorded at every stage of the translation.      ~-
+2026-08-12 11:33:16|   0.2|  0.0|WARN  |-~                      To inspect the recorded features,                      ~-
+2026-08-12 11:33:16|   0.2|  0.0|WARN  |-~                click the data cache icons next to the ports.                ~-
+2026-08-12 11:33:16|   0.2|  0.0|WARN  |-~                                                                             ~-
+2026-08-12 11:33:16|   0.2|  0.0|WARN  |-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+2026-08-12 11:33:16|   0.2|  0.0|INFORM|Translation was SUCCESSFUL with 7 warning(s) (0 feature(s) output)
+2026-08-12 11:33:16|   0.2|  0.0|INFORM|FME Session Duration: 0.9 seconds. (CPU: 0.1s user, 0.1s system)
+2026-08-12 11:33:16|   0.2|  0.0|INFORM|END - ProcessID: 40956, peak process memory usage: 113484 kB, current process memory usage: 113460 kB

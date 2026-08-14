@@ -521,94 +521,168 @@ for crop, ruleset in crop_rules.items():
         .map(reverse_score_map)
     )
 
-    # -----------------------------------------------------------------------
-    # Hard limiting factors
-    #
-    # Any hard-exclusion criterion classified as Unsuitable overrides
-    # the mean suitability class.
-    # -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# Hard limiting factors
+#
+# Any hard-exclusion criterion classified as Unsuitable overrides
+# the mean suitability class.
+#
+# Additional handling:
+#   - No SMU              -> Indeterminate
+#   - Missing crop input  -> Missing data
+# -----------------------------------------------------------------------
 
-    exclusion_rule_ids = hard_exclusion_rules.get(crop, [])
+exclusion_rule_ids = hard_exclusion_rules.get(crop, [])
 
-    exclusion_cols = [
-        f"{crop}_{rule_id}"
-        for rule_id in exclusion_rule_ids
-        if f"{crop}_{rule_id}" in df.columns
-    ]
-
-    if exclusion_cols:
-
-        hard_exclusion_mask = (
-            df[exclusion_cols]
-            .eq("Unsuitable")
-            .any(axis=1)
-        )
-
-        # Hard exclusions override the mean-based class
-        df.loc[
-            hard_exclusion_mask,
-            f"{crop}_FinalClass",
-        ] = "Unsuitable"
-
-        def get_hard_limiting_factors(row):
-            """Return all hard-exclusion criteria classified as Unsuitable."""
-        
-            limiting_rules = []
-        
-            for rule_id in exclusion_rule_ids:
-        
-                class_col = f"{crop}_{rule_id}"
-        
-                if class_col not in row.index:
-                    continue
-        
-                value = row[class_col]
-        
-                if pd.notna(value) and value == "Unsuitable":
-                    limiting_rules.append(
-                        rule_names.get(rule_id, rule_id)
-                    )
-        
-            return (
-                "; ".join(limiting_rules)
-                if limiting_rules
-                else pd.NA
-            )
-
-        df[f"{crop}_HardLimitingFactor"] = df.apply(
-            get_hard_limiting_factors,
-            axis=1,
-        )
-
-        # Useful Boolean field for filtering and GIS symbology
-        df[f"{crop}_HardExcluded"] = hard_exclusion_mask
-
-    else:
-
-        df[f"{crop}_HardLimitingFactor"] = pd.NA
-        df[f"{crop}_HardExcluded"] = False
+exclusion_cols = [
+    f"{crop}_{rule_id}"
+    for rule_id in exclusion_rule_ids
+    if f"{crop}_{rule_id}" in df.columns
+]
 
 # -----------------------------------------------------------------------
-# Exclude areas with no soil information
+# 1. Apply hard exclusions
+# -----------------------------------------------------------------------
+
+if exclusion_cols:
+
+    hard_exclusion_mask = (
+        df[exclusion_cols]
+        .eq("Unsuitable")
+        .any(axis=1)
+    )
+
+    # Hard exclusions override the mean-based class
+    df.loc[
+        hard_exclusion_mask,
+        f"{crop}_FinalClass",
+    ] = "Unsuitable"
+
+    def get_hard_limiting_factors(row):
+        """Return all hard-exclusion criteria classified as Unsuitable."""
+
+        limiting_rules = []
+
+        for rule_id in exclusion_rule_ids:
+
+            class_col = f"{crop}_{rule_id}"
+
+            if class_col not in row.index:
+                continue
+
+            value = row[class_col]
+
+            if pd.notna(value) and value == "Unsuitable":
+                limiting_rules.append(
+                    rule_names.get(rule_id, rule_id)
+                )
+
+        return (
+            "; ".join(limiting_rules)
+            if limiting_rules
+            else pd.NA
+        )
+
+    df[f"{crop}_HardLimitingFactor"] = df.apply(
+        get_hard_limiting_factors,
+        axis=1,
+    )
+
+    df[f"{crop}_HardExcluded"] = hard_exclusion_mask
+
+else:
+
+    df[f"{crop}_HardLimitingFactor"] = pd.NA
+    df[f"{crop}_HardExcluded"] = False
+
+
+# -----------------------------------------------------------------------
+# 2. No SMU = Indeterminate
+#
+# These areas are outside the soil mapping / assessment domain.
+# They are not considered genuine hard exclusions.
 # -----------------------------------------------------------------------
 
 no_soil_mask = df["SMU"].isna()
 
 df.loc[
     no_soil_mask,
-    f"{crop}_FinalClass"
+    f"{crop}_FinalClass",
 ] = "Indeterminate"
 
 df.loc[
     no_soil_mask,
-    f"{crop}_HardExcluded"
-] = True
+    f"{crop}_HardExcluded",
+] = False
 
 df.loc[
     no_soil_mask,
-    f"{crop}_HardLimitingFactor"
-] = "Indeterminate"        
+    f"{crop}_HardLimitingFactor",
+] = "Indeterminate"
 
+
+# -----------------------------------------------------------------------
+# 3. Missing data in one or more crop criteria
+#
+# Only check source columns actually required by the current crop.
+# Do not overwrite Indeterminate areas.
+# -----------------------------------------------------------------------
+
+required_columns = [
+    rule["column"]
+    for rule in ruleset.values()
+    if rule["column"] in df.columns
+]
+
+missing_data_mask = (
+    df[required_columns]
+    .isna()
+    .any(axis=1)
+    & ~no_soil_mask
+)
+
+df.loc[
+    missing_data_mask,
+    f"{crop}_FinalClass",
+] = "Missing data"
+
+# Missing data is not a hard exclusion
+df.loc[
+    missing_data_mask,
+    f"{crop}_HardExcluded",
+] = False
+
+# Clear any hard limiting factor where the result is due to missing data
+df.loc[
+    missing_data_mask,
+    f"{crop}_HardLimitingFactor",
+] = pd.NA
+
+
+# -----------------------------------------------------------------------
+# 4. Record which required fields are missing
+# -----------------------------------------------------------------------
+
+df[f"{crop}_MissingData"] = pd.NA
+
+for column in required_columns:
+
+    column_missing_mask = (
+        df[column].isna()
+        & ~no_soil_mask
+    )
+
+    existing = df.loc[
+        column_missing_mask,
+        f"{crop}_MissingData"
+    ]
+
+    df.loc[
+        column_missing_mask,
+        f"{crop}_MissingData"
+    ] = existing.fillna("").apply(
+        lambda x: f"{x}; {column}" if x else column
+    )
 # ---------------------------------------------------------------------------
 # Export
 # ---------------------------------------------------------------------------
