@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jul 24 13:16:54 2026
+Created on Tue Jul  7 10:54:37 2026
 
 @author: Ashton.Eaves
 """
-
 # In anaconda prompt open env: conda activate h3raster2
 # Then run spyder
 
@@ -39,84 +38,245 @@ df.columns = df.columns.str.strip()
 # Generic classifiers
 # ---------------------------------------------------------------------------
 
-def classify_numeric(value, rules):
+def classify_numeric(series, rules):
     """
-    Classify numeric values using one or more conditions.
+    Classify a numeric pandas Series using operator-based rules.
 
-    Supported operators:
-        ==, !=, >, >=, <, <=, between, or
+    Supported formats:
+
+        ("<", 100)
+        ("<=", 100)
+        (">", 100)
+        (">=", 100)
+        ("==", 0)
+        ("!=", 0)
+
+        ("between", 100, 200)
+
+    or:
+
+        ("between", (100, 200))
+
+    Multiple alternative conditions:
+
+        (
+            "or",
+            [
+                ("between", (5.0, 5.5)),
+                ("between", (6.5, 6.8)),
+            ],
+        )
     """
 
-    if pd.isna(value):
-        return np.nan
+    numeric_series = pd.to_numeric(
+        series,
+        errors="coerce",
+    )
 
-    try:
-        value = float(value)
-    except (TypeError, ValueError):
-        return np.nan
+    result = pd.Series(
+        pd.NA,
+        index=series.index,
+        dtype="object",
+    )
 
-    def condition_matches(value, condition):
-        """Return True when a value matches one condition."""
+    # -----------------------------------------------------------------------
+    # Helper function to evaluate one numeric condition
+    # -----------------------------------------------------------------------
 
-        op, threshold = condition
+    def evaluate_condition(condition):
 
-        if op == "==":
-            return value == threshold
+        if not isinstance(condition, (tuple, list)) or len(condition) < 2:
+            raise ValueError(
+                f"Invalid numeric condition: {condition}"
+            )
 
-        elif op == "!=":
-            return value != threshold
+        operator = condition[0]
 
-        elif op == ">":
-            return value > threshold
+        if operator == ">":
 
-        elif op == ">=":
-            return value >= threshold
+            threshold = condition[1]
+            return numeric_series > threshold
 
-        elif op == "<":
-            return value < threshold
+        elif operator == ">=":
 
-        elif op == "<=":
-            return value <= threshold
+            threshold = condition[1]
+            return numeric_series >= threshold
 
-        elif op == "between":
-            low, high = threshold
-            return low <= value <= high
+        elif operator == "<":
 
-        elif op == "or":
-            return any(
-                condition_matches(value, subcondition)
-                for subcondition in threshold
+            threshold = condition[1]
+            return numeric_series < threshold
+
+        elif operator == "<=":
+
+            threshold = condition[1]
+            return numeric_series <= threshold
+
+        elif operator == "==":
+
+            threshold = condition[1]
+            return numeric_series == threshold
+
+        elif operator == "!=":
+
+            threshold = condition[1]
+            return numeric_series != threshold
+
+        elif operator == "between":
+
+            # Supports:
+            # ("between", lower, upper)
+            if len(condition) == 3:
+
+                lower = condition[1]
+                upper = condition[2]
+
+            # Supports:
+            # ("between", (lower, upper))
+            elif (
+                len(condition) == 2
+                and isinstance(condition[1], (tuple, list))
+                and len(condition[1]) == 2
+            ):
+
+                lower, upper = condition[1]
+
+            else:
+
+                raise ValueError(
+                    f"Invalid 'between' condition: {condition}"
+                )
+
+            return numeric_series.between(
+                lower,
+                upper,
+                inclusive="both",
             )
 
         else:
+
             raise ValueError(
-                f"Unsupported operator: {op}"
+                f"Unsupported numeric operator "
+                f"'{operator}'. "
+                f"Full condition: {condition}"
             )
 
-    for suitability, condition in rules.items():
-        if condition_matches(value, condition):
-            return suitability
+    # -----------------------------------------------------------------------
+    # Apply each suitability rule
+    # -----------------------------------------------------------------------
 
-    return np.nan
+    for suitability_class, rule in rules.items():
+
+        if not isinstance(rule, (tuple, list)) or len(rule) < 2:
+
+            raise ValueError(
+                f"Invalid numeric rule for "
+                f"'{suitability_class}': {rule}"
+            )
+
+        operator = rule[0]
+
+        # -------------------------------------------------------------------
+        # OR conditions
+        # -------------------------------------------------------------------
+
+        if operator == "or":
+
+            conditions = rule[1]
+
+            if not isinstance(conditions, (tuple, list)):
+                raise ValueError(
+                    f"'or' rule for '{suitability_class}' "
+                    f"must contain a list of conditions."
+                )
+
+            # Start with all False
+            mask = pd.Series(
+                False,
+                index=series.index,
+            )
+
+            # A row matches if ANY condition matches
+            for condition in conditions:
+
+                mask = mask | evaluate_condition(condition)
+
+        # -------------------------------------------------------------------
+        # Normal single condition
+        # -------------------------------------------------------------------
+
+        else:
+
+            mask = evaluate_condition(rule)
+
+        # Do not classify missing source values
+        mask = (
+            mask
+            & numeric_series.notna()
+        )
+
+        result.loc[mask] = suitability_class
+
+    return result
 
 
-def classify_categorical(value, rules):
-    """Classify text or integer categories."""
+def classify_categorical(series, rules):
+    """
+    Classify a categorical pandas Series.
 
-    if pd.isna(value):
-        return np.nan
+    Matching is case-insensitive and ignores:
+    - leading/trailing whitespace
+    - repeated spaces
+    - non-breaking spaces
+    - en dashes and em dashes
+    """
 
-    value = str(value).strip().lower()
+    normalised_series = (
+        series
+        .astype("string")
+        .str.replace("\xa0", " ", regex=False)
+        .str.replace("–", "-", regex=False)
+        .str.replace("—", "-", regex=False)
+        .str.strip()
+        .str.lower()
+        .str.replace(r"\s+", " ", regex=True)
+    )
 
-    for suitability, valid_values in rules.items():
-        valid_values = [str(v).strip().lower() for v in valid_values]
+    result = pd.Series(
+        pd.NA,
+        index=series.index,
+        dtype="object",
+    )
 
-        if value in valid_values:
-            return suitability
+    for suitability_class, accepted_values in rules.items():
 
-    return np.nan
+        normalised_values = []
 
+        for value in accepted_values:
 
+            if pd.isna(value):
+                continue
+
+            normalised_value = (
+                str(value)
+                .replace("\xa0", " ")
+                .replace("–", "-")
+                .replace("—", "-")
+                .strip()
+                .lower()
+            )
+
+            normalised_value = " ".join(
+                normalised_value.split()
+            )
+
+            normalised_values.append(normalised_value)
+
+        mask = normalised_series.isin(normalised_values)
+
+        result.loc[mask] = suitability_class
+
+    return result
 # ---------------------------------------------------------------------------
 # Rule names for output
 # ---------------------------------------------------------------------------
@@ -135,7 +295,6 @@ rule_names = {
     "SLP": "Slope",    
     "STN": "Topsoil stones"
 }
-
 # ---------------------------------------------------------------------------
 # Crop rule dictionary
 # ---------------------------------------------------------------------------
@@ -275,7 +434,7 @@ crop_rules = {
 }
 
 # ---------------------------------------------------------------------------
-# Apply rules
+# Apply crop suitability rules
 # ---------------------------------------------------------------------------
 
 for crop, ruleset in crop_rules.items():
@@ -286,18 +445,32 @@ for crop, ruleset in crop_rules.items():
         output_col = f"{crop}_{rule_id}"
 
         if column not in df.columns:
-            df[output_col] = np.nan
-            print(f"Missing column for {crop} {rule_id}: {column}")
+            print(
+                f"Missing column for {crop} {rule_id}: "
+                f"{column}"
+            )
+
+            df[output_col] = pd.NA
             continue
 
         if rule["type"] == "numeric":
-            df[output_col] = df[column].apply(
-                lambda x: classify_numeric(x, rule["rules"])
+
+            df[output_col] = classify_numeric(
+                df[column],
+                rule["rules"],
             )
 
         elif rule["type"] == "categorical":
-            df[output_col] = df[column].apply(
-                lambda x: classify_categorical(x, rule["rules"])
+
+            df[output_col] = classify_categorical(
+                df[column],
+                rule["rules"],
+            )
+
+        else:
+            raise ValueError(
+                f"Unsupported rule type: {rule['type']} "
+                f"for {crop} {rule_id}"
             )
 
 # ---------------------------------------------------------------------------
@@ -312,7 +485,7 @@ score_map = {
     "Unsuitable": 4,
 }
 
-
+#Split by histogram of draft output:
 def mean_score_to_class(score):
     """Convert the mean criterion score into an overall suitability class."""
 
@@ -424,71 +597,168 @@ for crop, ruleset in crop_rules.items():
         .map(reverse_score_map)
     )
 
-    # -----------------------------------------------------------------------
-    # Hard limiting factors
-    #
-    # Any hard-exclusion criterion classified as Unsuitable overrides
-    # the mean suitability class.
-    # -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# Hard limiting factors
+#
+# Any hard-exclusion criterion classified as Unsuitable overrides
+# the mean suitability class.
+#
+# Additional handling:
+#   - No SMU              -> Indeterminate
+#   - Missing crop input  -> Missing data
+# -----------------------------------------------------------------------
 
-    exclusion_rule_ids = hard_exclusion_rules.get(crop, [])
+exclusion_rule_ids = hard_exclusion_rules.get(crop, [])
 
-    exclusion_cols = [
-        f"{crop}_{rule_id}"
-        for rule_id in exclusion_rule_ids
-        if f"{crop}_{rule_id}" in df.columns
+exclusion_cols = [
+    f"{crop}_{rule_id}"
+    for rule_id in exclusion_rule_ids
+    if f"{crop}_{rule_id}" in df.columns
+]
+
+# -----------------------------------------------------------------------
+# 1. Apply hard exclusions
+# -----------------------------------------------------------------------
+
+if exclusion_cols:
+
+    hard_exclusion_mask = (
+        df[exclusion_cols]
+        .eq("Unsuitable")
+        .any(axis=1)
+    )
+
+    # Hard exclusions override the mean-based class
+    df.loc[
+        hard_exclusion_mask,
+        f"{crop}_FinalClass",
+    ] = "Unsuitable"
+
+    def get_hard_limiting_factors(row):
+        """Return all hard-exclusion criteria classified as Unsuitable."""
+
+        limiting_rules = []
+
+        for rule_id in exclusion_rule_ids:
+
+            class_col = f"{crop}_{rule_id}"
+
+            if class_col not in row.index:
+                continue
+
+            value = row[class_col]
+
+            if pd.notna(value) and value == "Unsuitable":
+                limiting_rules.append(
+                    rule_names.get(rule_id, rule_id)
+                )
+
+        return (
+            "; ".join(limiting_rules)
+            if limiting_rules
+            else pd.NA
+        )
+
+    df[f"{crop}_HardLimitingFactor"] = df.apply(
+        get_hard_limiting_factors,
+        axis=1,
+    )
+
+    df[f"{crop}_HardExcluded"] = hard_exclusion_mask
+
+else:
+
+    df[f"{crop}_HardLimitingFactor"] = pd.NA
+    df[f"{crop}_HardExcluded"] = False
+
+
+# -----------------------------------------------------------------------
+# 2. No SMU = Indeterminate
+#
+# These areas are outside the soil mapping / assessment domain.
+# They are not considered genuine hard exclusions.
+# -----------------------------------------------------------------------
+
+no_soil_mask = df["SMU"].isna()
+
+df.loc[
+    no_soil_mask,
+    f"{crop}_FinalClass",
+] = "Indeterminate"
+
+df.loc[
+    no_soil_mask,
+    f"{crop}_HardExcluded",
+] = False
+
+df.loc[
+    no_soil_mask,
+    f"{crop}_HardLimitingFactor",
+] = "Indeterminate"
+
+
+# -----------------------------------------------------------------------
+# 3. Missing data in one or more crop criteria
+#
+# Only check source columns actually required by the current crop.
+# Do not overwrite Indeterminate areas.
+# -----------------------------------------------------------------------
+
+required_columns = [
+    rule["column"]
+    for rule in ruleset.values()
+    if rule["column"] in df.columns
+]
+
+missing_data_mask = (
+    df[required_columns]
+    .isna()
+    .any(axis=1)
+    & ~no_soil_mask
+)
+
+df.loc[
+    missing_data_mask,
+    f"{crop}_FinalClass",
+] = "Missing data"
+
+# Missing data is not a hard exclusion
+df.loc[
+    missing_data_mask,
+    f"{crop}_HardExcluded",
+] = False
+
+# Clear any hard limiting factor where the result is due to missing data
+df.loc[
+    missing_data_mask,
+    f"{crop}_HardLimitingFactor",
+] = pd.NA
+
+
+# -----------------------------------------------------------------------
+# 4. Record which required fields are missing
+# -----------------------------------------------------------------------
+
+df[f"{crop}_MissingData"] = pd.NA
+
+for column in required_columns:
+
+    column_missing_mask = (
+        df[column].isna()
+        & ~no_soil_mask
+    )
+
+    existing = df.loc[
+        column_missing_mask,
+        f"{crop}_MissingData"
     ]
 
-    if exclusion_cols:
-
-        hard_exclusion_mask = (
-            df[exclusion_cols]
-            .eq("Unsuitable")
-            .any(axis=1)
-        )
-
-        # Hard exclusions override the mean-based class
-        df.loc[
-            hard_exclusion_mask,
-            f"{crop}_FinalClass",
-        ] = "Unsuitable"
-
-        def get_hard_limiting_factors(row):
-            """Return all hard-exclusion criteria that are Unsuitable."""
-
-            limiting_rules = []
-
-            for rule_id in exclusion_rule_ids:
-
-                class_col = f"{crop}_{rule_id}"
-
-                if (
-                    class_col in row.index
-                    and row[class_col] == "Unsuitable"
-                ):
-                    limiting_rules.append(
-                        rule_names.get(rule_id, rule_id)
-                    )
-
-            return (
-                "; ".join(limiting_rules)
-                if limiting_rules
-                else pd.NA
-            )
-
-        df[f"{crop}_HardLimitingFactor"] = df.apply(
-            get_hard_limiting_factors,
-            axis=1,
-        )
-
-        # Useful Boolean field for filtering and GIS symbology
-        df[f"{crop}_HardExcluded"] = hard_exclusion_mask
-
-    else:
-
-        df[f"{crop}_HardLimitingFactor"] = pd.NA
-        df[f"{crop}_HardExcluded"] = False
-
+    df.loc[
+        column_missing_mask,
+        f"{crop}_MissingData"
+    ] = existing.fillna("").apply(
+        lambda x: f"{x}; {column}" if x else column
+    )
 # ---------------------------------------------------------------------------
 # Export
 # ---------------------------------------------------------------------------
@@ -497,3 +767,8 @@ df.to_csv(out_path, index=False)
 
 print("Done")
 print(f"Output saved to: {out_path}")
+
+##############################################################################
+
+
+
