@@ -15,11 +15,12 @@ Created on Wed Sep  2 13:19:36 2026
 #
 # Created 2026
 ###############################################################################
+# -*- coding: utf-8 -*-
 
 import os
+import re
 import pandas as pd
 import numpy as np
-
 
 # =============================================================================
 # User settings
@@ -47,14 +48,16 @@ output_csv = os.path.join(
 
 
 # =============================================================================
-# Read input data
+# Read crop suitability input
 # =============================================================================
 
 print("Reading crop suitability input...")
 
 df = pd.read_csv(
     input_csv,
-    dtype={"GRID_ID": "string"},
+    dtype={
+        "GRID_ID": "string",
+    },
 )
 
 df.columns = df.columns.str.strip()
@@ -64,19 +67,22 @@ print(f"Input columns: {len(df.columns):,}")
 
 
 # =============================================================================
-# Read machine-readable ruleset
+# Read machine-readable suitability rules
 # =============================================================================
 
 print("\nReading suitability ruleset...")
 
-rules = pd.read_csv(rules_csv)
+rules = pd.read_csv(
+    rules_csv
+)
 
 rules.columns = rules.columns.str.strip()
 
 print(f"Rule rows: {len(rules):,}")
-print(f"Crops: {rules['Crop'].nunique()}")
+print(f"Crops: {rules['Crop'].nunique():,}")
 
 print("\nCrops found:")
+
 for crop in rules["Crop"].dropna().unique():
     print(f"  - {crop}")
 
@@ -86,34 +92,35 @@ for crop in rules["Crop"].dropna().unique():
 # =============================================================================
 
 # Numeric fields
-numeric_rule_fields = [
+for column in [
     "ClassScore",
     "Lower",
     "Upper",
-]
+]:
 
-for col in numeric_rule_fields:
-    if col in rules.columns:
-        rules[col] = pd.to_numeric(
-            rules[col],
+    if column in rules.columns:
+
+        rules[column] = pd.to_numeric(
+            rules[column],
             errors="coerce",
         )
 
 
-# ---------------------------------------------------------------------------
-# Convert True/False fields safely
-# ---------------------------------------------------------------------------
+# =============================================================================
+# Convert CSV Boolean fields safely
+# =============================================================================
 
 def to_bool(value):
     """
-    Convert common CSV representations of True/False
-    to Python Boolean values.
+    Convert common CSV Boolean representations to True/False.
     """
 
     if pd.isna(value):
         return False
 
-    return str(value).strip().lower() in [
+    value = str(value).strip().lower()
+
+    return value in [
         "true",
         "1",
         "yes",
@@ -121,49 +128,34 @@ def to_bool(value):
     ]
 
 
-for col in [
+for column in [
     "LowerInc",
     "UpperInc",
     "HardLimit",
 ]:
-    if col in rules.columns:
-        rules[col] = rules[col].apply(to_bool)
+
+    if column in rules.columns:
+
+        rules[column] = (
+            rules[column]
+            .apply(to_bool)
+        )
 
 
 # =============================================================================
-# Convert categorical source variables to numeric variables
+# Helper function: normalise categorical text
 # =============================================================================
-
-# ---------------------------------------------------------------------------
-# Drainage class
-#
-# Lower scores represent better drainage conditions.
-#
-# This converts the categorical S-map drainage description into a simple
-# ordered numeric variable that can be used by the machine ruleset.
-# ---------------------------------------------------------------------------
-
-drainage_map = {
-
-    "excessively drained": 1,
-    "well drained": 2,
-    "moderately well drained": 3,
-
-    # Handle both spellings found previously
-    "imperfectly drained": 4,
-    "imperfect drained": 4,
-
-    "poorly drained": 5,
-
-    # Handle both spellings
-    "very poorly drained": 6,
-    "very-poorly drained": 6,
-}
-
 
 def normalise_text(series):
     """
-    Normalise categorical text before lookup.
+    Standardise categorical text before mapping.
+
+    Handles:
+        - leading/trailing whitespace
+        - repeated spaces
+        - non-breaking spaces
+        - en/em dashes
+        - upper/lower-case differences
     """
 
     return (
@@ -178,9 +170,44 @@ def normalise_text(series):
     )
 
 
+# =============================================================================
+# Pre-processing
+# =============================================================================
+
+
+# =============================================================================
+# DrainageClass -> DrainageScore
+#
+# 1 = Excessively / Well drained
+# 2 = Moderately well drained
+# 3 = Imperfectly drained
+# 4 = Poorly drained
+# 5 = Very poorly drained
+# =============================================================================
+
+drainage_map = {
+
+    "excessively drained": 1,
+    "well drained": 1,
+
+    "moderately well drained": 2,
+
+    "imperfectly drained": 3,
+    "imperfect drained": 3,
+
+    "poorly drained": 4,
+
+    "very poorly drained": 5,
+    "very-poorly drained": 5,
+}
+
+
 if "DrainageClass" in df.columns:
 
-    print("\nConverting DrainageClass to DrainageScore...")
+    print(
+        "\nConverting DrainageClass "
+        "to DrainageScore..."
+    )
 
     drainage_normalised = normalise_text(
         df["DrainageClass"]
@@ -192,133 +219,389 @@ if "DrainageClass" in df.columns:
         .astype("Float64")
     )
 
+    print("\nDrainage conversion:")
+
     print(
         df[
-            ["DrainageClass", "DrainageScore"]
+            [
+                "DrainageClass",
+                "DrainageScore",
+            ]
         ]
         .drop_duplicates()
-        .sort_values("DrainageScore")
+        .sort_values(
+            "DrainageScore"
+        )
         .to_string(index=False)
     )
+
+    unmapped_drainage = (
+        df["DrainageClass"].notna()
+        & df["DrainageScore"].isna()
+    )
+
+    print(
+        "\nUnmapped drainage records:",
+        f"{unmapped_drainage.sum():,}"
+    )
+
+    if unmapped_drainage.any():
+
+        print(
+            "\nUnmapped DrainageClass values:"
+        )
+
+        print(
+            df.loc[
+                unmapped_drainage,
+                "DrainageClass",
+            ]
+            .value_counts()
+        )
 
 else:
 
     print(
-        "\nWARNING: DrainageClass does not exist "
-        "in the input dataset."
+        "\nWARNING: DrainageClass "
+        "was not found."
     )
 
     df["DrainageScore"] = pd.NA
 
 
 # =============================================================================
-# Rule names
+# RootDepthRange -> RootDepth_cm
+#
+# RootDepthRange contains categories such as:
+#
+#   > 1 m
+#   60 - 100 cm
+#   45 - 50 cm
+#   10 - 15 cm
+#
+# For bounded ranges, the midpoint is used as the representative depth.
+#
+# Examples:
+#
+#   60 - 100 cm -> 80 cm
+#   45 - 50 cm  -> 47.5 cm
+#
+# > 1 m is represented as 101 cm.
+#
+# NOTE:
+# This introduces a midpoint assumption because the original source
+# provides a depth range rather than an exact root depth.
+# =============================================================================
+
+def root_depth_to_cm(value):
+    """
+    Convert RootDepthRange text to a representative depth in cm.
+    """
+
+    if pd.isna(value):
+        return np.nan
+
+    value = str(value)
+
+    # Normalise text
+    value = (
+        value
+        .replace("\xa0", " ")
+        .replace("–", "-")
+        .replace("—", "-")
+        .strip()
+        .lower()
+    )
+
+    value = re.sub(
+        r"\s+",
+        " ",
+        value,
+    )
+
+    # -------------------------------------------------------------------------
+    # Greater-than values in metres
+    #
+    # > 1 m
+    # >1 m
+    # -------------------------------------------------------------------------
+
+    match = re.match(
+        r"^>\s*([0-9.]+)\s*m$",
+        value,
+    )
+
+    if match:
+
+        metres = float(
+            match.group(1)
+        )
+
+        return (
+            metres * 100
+            + 1
+        )
+
+
+    # -------------------------------------------------------------------------
+    # Greater-than values in cm
+    #
+    # >100 cm
+    # > 100 cm
+    # -------------------------------------------------------------------------
+
+    match = re.match(
+        r"^>\s*([0-9.]+)\s*cm$",
+        value,
+    )
+
+    if match:
+
+        return (
+            float(match.group(1))
+            + 1
+        )
+
+
+    # -------------------------------------------------------------------------
+    # Less-than values
+    #
+    # <30 cm
+    # < 30 cm
+    #
+    # Use a value just below the threshold.
+    # -------------------------------------------------------------------------
+
+    match = re.match(
+        r"^<\s*([0-9.]+)\s*cm$",
+        value,
+    )
+
+    if match:
+
+        upper = float(
+            match.group(1)
+        )
+
+        return max(
+            upper - 1,
+            0,
+        )
+
+
+    # -------------------------------------------------------------------------
+    # Range values
+    #
+    # 60 - 100 cm
+    # 45 - 50 cm
+    # 10 - 15 cm
+    #
+    # Use midpoint.
+    # -------------------------------------------------------------------------
+
+    match = re.match(
+        r"^([0-9.]+)\s*-\s*([0-9.]+)\s*cm$",
+        value,
+    )
+
+    if match:
+
+        lower = float(
+            match.group(1)
+        )
+
+        upper = float(
+            match.group(2)
+        )
+
+        return (
+            lower + upper
+        ) / 2
+
+
+    # -------------------------------------------------------------------------
+    # Alternative wording:
+    #
+    # 60 to 100 cm
+    # -------------------------------------------------------------------------
+
+    match = re.match(
+        r"^([0-9.]+)\s+to\s+([0-9.]+)\s*cm$",
+        value,
+    )
+
+    if match:
+
+        lower = float(
+            match.group(1)
+        )
+
+        upper = float(
+            match.group(2)
+        )
+
+        return (
+            lower + upper
+        ) / 2
+
+
+    # Could not interpret value
+    return np.nan
+
+
+if "RootDepthRange" in df.columns:
+
+    print(
+        "\nConverting RootDepthRange "
+        "to RootDepth_cm..."
+    )
+
+    df["RootDepth_cm"] = (
+        df["RootDepthRange"]
+        .apply(root_depth_to_cm)
+        .astype("Float64")
+    )
+
+    print("\nRoot depth conversion:")
+
+    print(
+        df[
+            [
+                "RootDepthRange",
+                "RootDepth_cm",
+            ]
+        ]
+        .drop_duplicates()
+        .sort_values(
+            "RootDepth_cm"
+        )
+        .to_string(index=False)
+    )
+
+    unmapped_root_depth = (
+        df["RootDepthRange"].notna()
+        & df["RootDepth_cm"].isna()
+    )
+
+    print(
+        "\nUnmapped root-depth records:",
+        f"{unmapped_root_depth.sum():,}"
+    )
+
+    if unmapped_root_depth.any():
+
+        print(
+            "\nUnmapped RootDepthRange values:"
+        )
+
+        print(
+            df.loc[
+                unmapped_root_depth,
+                "RootDepthRange",
+            ]
+            .value_counts()
+        )
+
+else:
+
+    print(
+        "\nWARNING: RootDepthRange "
+        "was not found."
+    )
+
+    df["RootDepth_cm"] = pd.NA
+
+
+# =============================================================================
+# Rule names for output
 # =============================================================================
 
 rule_names = {
+
     "ANR": "Rainfall requirement",
     "ART": "Rainfall excess",
+
     "SLP": "Slope",
+
     "PRD": "Root depth",
+
     "DRC": "Drainage",
+
     "PWC": "Plant available water",
+
     "STN": "Topsoil stones",
+
     "FFB": "SON frost days",
     "FFH": "MAM frost days",
+
     "GDD": "Growing Degree Days",
+
     "ECS": "Salinity",
+
     "HFL": "Heat stress",
+
+    "HFO": "Harvest heat",
+
+    "MET": "Mean temperature",
+
     "MNT": "Minimum temperature",
+
     "MXT": "Maximum temperature",
+
     "PHH": "Soil pH",
+
+    "RAH": "Harvest rainfall",
 }
 
 
 # =============================================================================
-# Mean score to final class
+# Convert mean score to final suitability class
 # =============================================================================
 
 def mean_score_to_class(score):
     """
-    Convert mean suitability score into final suitability class.
-
-    Uses the thresholds developed in the previous suitability model.
+    Convert mean criterion score into overall suitability class.
     """
 
     if pd.isna(score):
+
         return pd.NA
 
     elif score < 1.5:
+
         return "Well Suited"
 
     elif score < 2.0:
+
         return "Suited"
 
     elif score < 2.5:
+
         return "Moderately Suited"
 
     else:
+
         return "Unsuitable"
 
 
 # =============================================================================
-# Apply one rule range
+# Class score lookup
 # =============================================================================
 
-def build_range_mask(
-    series,
-    lower,
-    upper,
-    lower_inc,
-    upper_inc,
-):
-    """
-    Build a Boolean mask for one row of the machine ruleset.
+score_class_map = {
 
-    Supports:
-        lower + upper
-        lower only
-        upper only
+    1: "Well Suited",
 
-    and honours inclusive/exclusive boundaries.
-    """
+    2: "Suited",
 
-    numeric_series = pd.to_numeric(
-        series,
-        errors="coerce",
-    )
+    3: "Moderately Suited",
 
-    mask = numeric_series.notna()
-
-    # -------------------------------------------------------------------------
-    # Lower boundary
-    # -------------------------------------------------------------------------
-
-    if pd.notna(lower):
-
-        if lower_inc:
-            mask &= numeric_series >= lower
-
-        else:
-            mask &= numeric_series > lower
-
-    # -------------------------------------------------------------------------
-    # Upper boundary
-    # -------------------------------------------------------------------------
-
-    if pd.notna(upper):
-
-        if upper_inc:
-            mask &= numeric_series <= upper
-
-        else:
-            mask &= numeric_series < upper
-
-    return mask
+    4: "Unsuitable",
+}
 
 
 # =============================================================================
-# Process each crop
+# Process every crop in machine ruleset
 # =============================================================================
 
 crops = (
@@ -331,13 +614,31 @@ crops = (
 
 for crop in crops:
 
-    print("\n" + "=" * 70)
-    print(f"Processing crop: {crop}")
-    print("=" * 70)
+    print(
+        "\n"
+        + "=" * 70
+    )
 
-    crop_rules = rules[
-        rules["Crop"] == crop
-    ].copy()
+    print(
+        f"Processing crop: {crop}"
+    )
+
+    print(
+        "=" * 70
+    )
+
+
+    # =========================================================================
+    # Extract rules for current crop
+    # =========================================================================
+
+    crop_rules = (
+        rules.loc[
+            rules["Crop"] == crop
+        ]
+        .copy()
+    )
+
 
     rule_ids = (
         crop_rules["Rule_id"]
@@ -346,42 +647,60 @@ for crop in crops:
         .tolist()
     )
 
+
     score_cols = []
 
+
     # =========================================================================
-    # Apply each criterion
+    # Apply each suitability criterion
     # =========================================================================
 
     for rule_id in rule_ids:
 
-        criterion_rules = crop_rules[
-            crop_rules["Rule_id"] == rule_id
-        ].copy()
+        criterion_rules = (
+            crop_rules.loc[
+                crop_rules["Rule_id"]
+                == rule_id
+            ]
+            .copy()
+        )
 
-        # All rows belonging to a Rule_id should use the same input field
+
+        # ---------------------------------------------------------------------
+        # Get input field
+        # ---------------------------------------------------------------------
+
         input_fields = (
-            criterion_rules["InputField"]
+            criterion_rules[
+                "InputField"
+            ]
             .dropna()
             .unique()
         )
 
+
         if len(input_fields) == 0:
 
             print(
-                f"WARNING: No InputField for "
-                f"{crop} {rule_id}"
+                f"WARNING: No InputField "
+                f"for {crop} {rule_id}"
             )
 
             continue
 
-        input_field = input_fields[0]
+
+        input_field = (
+            input_fields[0]
+        )
+
 
         output_score_col = (
             f"{crop}_{rule_id}_score"
         )
 
+
         # ---------------------------------------------------------------------
-        # Check source field
+        # Missing input field
         # ---------------------------------------------------------------------
 
         if input_field not in df.columns:
@@ -392,7 +711,13 @@ for crop in crops:
                 f"for {crop} {rule_id}"
             )
 
-            df[output_score_col] = pd.NA
+            df[output_score_col] = (
+                pd.Series(
+                    pd.NA,
+                    index=df.index,
+                    dtype="Float64",
+                )
+            )
 
             score_cols.append(
                 output_score_col
@@ -400,74 +725,213 @@ for crop in crops:
 
             continue
 
+
         # ---------------------------------------------------------------------
-        # Create empty score field
+        # Convert source variable to numeric
         # ---------------------------------------------------------------------
 
-        criterion_score = pd.Series(
-            pd.NA,
-            index=df.index,
-            dtype="Float64",
+        numeric_series = (
+            pd.to_numeric(
+                df[input_field],
+                errors="coerce",
+            )
         )
 
+
         # ---------------------------------------------------------------------
-        # Apply every range belonging to this criterion
-        #
-        # This naturally handles split ranges such as citrus pH:
-        #
-        # Score 2 = 5.0–5.5 OR 6.5–6.8
+        # Empty criterion score
         # ---------------------------------------------------------------------
 
-        for _, rule_row in criterion_rules.iterrows():
+        criterion_score = (
+            pd.Series(
+                pd.NA,
+                index=df.index,
+                dtype="Float64",
+            )
+        )
 
-            class_score = rule_row["ClassScore"]
 
-            lower = rule_row["Lower"]
-            upper = rule_row["Upper"]
+        # =====================================================================
+        # Apply every rule row belonging to criterion
+        # =====================================================================
 
-            lower_inc = rule_row["LowerInc"]
-            upper_inc = rule_row["UpperInc"]
+        for _, rule_row in (
+            criterion_rules.iterrows()
+        ):
 
-            mask = build_range_mask(
-                df[input_field],
-                lower,
-                upper,
-                lower_inc,
-                upper_inc,
+            class_score = (
+                rule_row["ClassScore"]
             )
 
-            criterion_score.loc[mask] = (
-                class_score
+            lower = (
+                rule_row["Lower"]
             )
+
+            upper = (
+                rule_row["Upper"]
+            )
+
+            lower_inc = (
+                rule_row["LowerInc"]
+            )
+
+            upper_inc = (
+                rule_row["UpperInc"]
+            )
+
+
+            # -----------------------------------------------------------------
+            # Exact-value rule
+            #
+            # Examples:
+            #
+            # Salinity == 0
+            # Salinity == 1
+            #
+            # DrainageScore == 1
+            # DrainageScore == 5
+            # -----------------------------------------------------------------
+
+            if (
+                pd.notna(lower)
+                and pd.notna(upper)
+                and float(lower)
+                == float(upper)
+            ):
+
+                mask = (
+                    numeric_series
+                    == float(lower)
+                )
+
+
+            # -----------------------------------------------------------------
+            # Range / threshold rule
+            # -----------------------------------------------------------------
+
+            else:
+
+                mask = (
+                    numeric_series
+                    .notna()
+                    .copy()
+                )
+
+
+                # -------------------------------------------------------------
+                # Lower bound
+                # -------------------------------------------------------------
+
+                if pd.notna(lower):
+
+                    lower_value = float(
+                        lower
+                    )
+
+                    if lower_inc:
+
+                        mask &= (
+                            numeric_series
+                            >= lower_value
+                        )
+
+                    else:
+
+                        mask &= (
+                            numeric_series
+                            > lower_value
+                        )
+
+
+                # -------------------------------------------------------------
+                # Upper bound
+                # -------------------------------------------------------------
+
+                if pd.notna(upper):
+
+                    upper_value = float(
+                        upper
+                    )
+
+                    if upper_inc:
+
+                        mask &= (
+                            numeric_series
+                            <= upper_value
+                        )
+
+                    else:
+
+                        mask &= (
+                            numeric_series
+                            < upper_value
+                        )
+
+
+            # -----------------------------------------------------------------
+            # Remove NA from Boolean mask
+            # -----------------------------------------------------------------
+
+            mask = (
+                mask
+                .fillna(False)
+            )
+
+
+            # -----------------------------------------------------------------
+            # Assign class score
+            # -----------------------------------------------------------------
+
+            criterion_score.loc[
+                mask
+            ] = class_score
+
+
+        # =====================================================================
+        # IMPORTANT:
+        #
+        # Write completed criterion back to main dataframe.
+        # =====================================================================
 
         df[output_score_col] = (
             criterion_score
         )
 
+
         score_cols.append(
             output_score_col
         )
 
+
         print(
             f"  {rule_id:<5} "
             f"{input_field:<30} "
-            f"{df[output_score_col].notna().sum():,} classified"
+            f"{df[output_score_col].notna().sum():,} "
+            f"classified"
         )
+
+
+    # =========================================================================
+    # Skip crop if there are no usable criteria
+    # =========================================================================
+
+    if not score_cols:
+
+        print(
+            f"WARNING: No usable "
+            f"criteria for {crop}"
+        )
+
+        continue
 
 
     # =========================================================================
     # Mean suitability score
     # =========================================================================
 
-    if not score_cols:
-
-        print(
-            f"WARNING: No usable criteria for {crop}"
-        )
-
-        continue
-
-    df[f"{crop}_MeanScore"] = (
+    df[
+        f"{crop}_MeanScore"
+    ] = (
         df[score_cols]
         .mean(
             axis=1,
@@ -481,20 +945,25 @@ for crop in crops:
     # Initial final class
     # =========================================================================
 
-    df[f"{crop}_FinalClass"] = (
-        df[f"{crop}_MeanScore"]
-        .apply(mean_score_to_class)
+    df[
+        f"{crop}_FinalClass"
+    ] = (
+        df[
+            f"{crop}_MeanScore"
+        ]
+        .apply(
+            mean_score_to_class
+        )
     )
 
 
     # =========================================================================
-    # Normal limiting factor
-    #
-    # Highest individual criterion score.
-    # Multiple tied criteria are retained.
+    # Worst individual criterion
     # =========================================================================
 
-    df[f"{crop}_WorstScore"] = (
+    df[
+        f"{crop}_WorstScore"
+    ] = (
         df[score_cols]
         .max(
             axis=1,
@@ -502,11 +971,21 @@ for crop in crops:
         )
     )
 
-    limiting_factor = pd.Series(
-        pd.NA,
-        index=df.index,
-        dtype="object",
+
+    # =========================================================================
+    # Normal limiting factor
+    #
+    # Retain all criteria tied for the worst score.
+    # =========================================================================
+
+    limiting_factor = (
+        pd.Series(
+            pd.NA,
+            index=df.index,
+            dtype="object",
+        )
     )
+
 
     for rule_id in rule_ids:
 
@@ -517,83 +996,128 @@ for crop in crops:
         if score_col not in df.columns:
             continue
 
+
         mask = (
+
             df[score_col].notna()
+
             & (
+
                 df[score_col]
-                == df[f"{crop}_WorstScore"]
+
+                == df[
+                    f"{crop}_WorstScore"
+                ]
+
+            )
+
+        )
+
+
+        factor_name = (
+            rule_names.get(
+                rule_id,
+                rule_id,
             )
         )
 
-        factor_name = rule_names.get(
-            rule_id,
-            rule_id,
+
+        existing = (
+            limiting_factor.loc[
+                mask
+            ]
         )
 
-        existing = limiting_factor.loc[mask]
 
-        limiting_factor.loc[mask] = (
+        limiting_factor.loc[
+            mask
+        ] = (
+
             existing
             .fillna("")
             .apply(
-                lambda x:
-                f"{x}; {factor_name}"
-                if x
-                else factor_name
+
+                lambda value:
+
+                (
+                    f"{value}; {factor_name}"
+                    if value
+                    else factor_name
+                )
+
             )
+
         )
 
-    df[f"{crop}_LimitingFactor"] = (
-        limiting_factor
-    )
+
+    df[
+        f"{crop}_LimitingFactor"
+    ] = limiting_factor
 
 
     # =========================================================================
     # Limiting class
     # =========================================================================
 
-    score_class_map = {
-        1: "Well Suited",
-        2: "Suited",
-        3: "Moderately Suited",
-        4: "Unsuitable",
-    }
+    df[
+        f"{crop}_LimitingClass"
+    ] = (
 
-    df[f"{crop}_LimitingClass"] = (
-        df[f"{crop}_WorstScore"]
-        .map(score_class_map)
+        df[
+            f"{crop}_WorstScore"
+        ]
+
+        .map(
+            score_class_map
+        )
+
     )
 
 
     # =========================================================================
     # Hard limiting factors
     #
-    # Read directly from HardLimit in the rules CSV.
-    #
-    # A hard-limit criterion only overrides the final result when its
-    # criterion score = 4 (Unsuitable).
+    # HardLimit is read directly from machine ruleset.
+    # Only ClassScore 4 triggers hard exclusion.
     # =========================================================================
 
     hard_rule_ids = (
+
         crop_rules.loc[
-            crop_rules["HardLimit"] == True,
+
+            crop_rules[
+                "HardLimit"
+            ] == True,
+
             "Rule_id",
+
         ]
+
         .dropna()
+
         .drop_duplicates()
+
         .tolist()
+
     )
 
-    hard_excluded = pd.Series(
-        False,
-        index=df.index,
+
+    hard_excluded = (
+        pd.Series(
+            False,
+            index=df.index,
+        )
     )
 
-    hard_limiting_factor = pd.Series(
-        pd.NA,
-        index=df.index,
-        dtype="object",
+
+    hard_limiting_factor = (
+        pd.Series(
+            pd.NA,
+            index=df.index,
+            dtype="object",
+        )
     )
+
 
     for rule_id in hard_rule_ids:
 
@@ -604,73 +1128,128 @@ for crop in crops:
         if score_col not in df.columns:
             continue
 
+
         # Score 4 = Unsuitable
         mask = (
-            df[score_col] == 4
-        ).fillna(False)
+
+            df[score_col]
+            .eq(4)
+            .fillna(False)
+
+        )
+
 
         hard_excluded |= mask
 
-        factor_name = rule_names.get(
-            rule_id,
-            rule_id,
-        )
 
-        existing = (
-            hard_limiting_factor.loc[mask]
-        )
-
-        hard_limiting_factor.loc[mask] = (
-            existing
-            .fillna("")
-            .apply(
-                lambda x:
-                f"{x}; {factor_name}"
-                if x
-                else factor_name
+        factor_name = (
+            rule_names.get(
+                rule_id,
+                rule_id,
             )
         )
 
-    df[f"{crop}_HardExcluded"] = (
-        hard_excluded
-    )
 
-    df[f"{crop}_HardLimitingFactor"] = (
-        hard_limiting_factor
-    )
+        existing = (
 
-    # Hard limit overrides mean score
+            hard_limiting_factor.loc[
+                mask
+            ]
+
+        )
+
+
+        hard_limiting_factor.loc[
+            mask
+        ] = (
+
+            existing
+            .fillna("")
+            .apply(
+
+                lambda value:
+
+                (
+                    f"{value}; {factor_name}"
+                    if value
+                    else factor_name
+                )
+
+            )
+
+        )
+
+
+    df[
+        f"{crop}_HardExcluded"
+    ] = hard_excluded
+
+
+    df[
+        f"{crop}_HardLimitingFactor"
+    ] = hard_limiting_factor
+
+
+    # -------------------------------------------------------------------------
+    # Hard exclusion overrides mean suitability
+    # -------------------------------------------------------------------------
+
     df.loc[
+
         hard_excluded,
+
         f"{crop}_FinalClass",
+
     ] = "Unsuitable"
 
 
     # =========================================================================
-    # Missing data
-    #
-    # Determine required source fields directly from ruleset.
+    # Required source fields for this crop
     # =========================================================================
 
     required_columns = (
-        crop_rules["InputField"]
+
+        crop_rules[
+            "InputField"
+        ]
+
         .dropna()
+
         .drop_duplicates()
+
         .tolist()
+
     )
 
-    # Only fields that actually exist can be checked row-by-row
+
     existing_required_columns = [
-        col
-        for col in required_columns
-        if col in df.columns
+
+        column
+
+        for column
+        in required_columns
+
+        if column
+        in df.columns
+
+    ]
+
+
+    absent_columns = [
+
+        column
+
+        for column
+        in required_columns
+
+        if column
+        not in df.columns
+
     ]
 
 
     # =========================================================================
     # No SMU = Indeterminate
-    #
-    # Outside soil mapping / assessment domain.
     # =========================================================================
 
     if "SMU" in df.columns:
@@ -681,89 +1260,164 @@ for crop in crops:
 
     else:
 
-        no_soil_mask = pd.Series(
-            False,
-            index=df.index,
+        no_soil_mask = (
+            pd.Series(
+                False,
+                index=df.index,
+            )
         )
 
 
     # =========================================================================
-    # Missing crop input data
+    # Missing required data
     # =========================================================================
 
     if existing_required_columns:
 
         missing_data_mask = (
-            df[existing_required_columns]
+
+            df[
+                existing_required_columns
+            ]
             .isna()
             .any(axis=1)
+
             & ~no_soil_mask
+
         )
 
     else:
 
-        missing_data_mask = pd.Series(
-            False,
-            index=df.index,
+        missing_data_mask = (
+            pd.Series(
+                False,
+                index=df.index,
+            )
         )
 
 
     # -------------------------------------------------------------------------
-    # Also detect required columns completely absent from input table
+    # If the entire required column is absent,
+    # all mapped records are Missing data.
     # -------------------------------------------------------------------------
-
-    absent_columns = [
-        col
-        for col in required_columns
-        if col not in df.columns
-    ]
 
     if absent_columns:
 
-        print(
-            f"\nWARNING: {crop} has missing source columns:"
+        missing_data_mask |= (
+            ~no_soil_mask
         )
 
-        for col in absent_columns:
-            print(f"  - {col}")
+        print(
+            f"\nWARNING: {crop} "
+            f"has missing source columns:"
+        )
+
+        for column in absent_columns:
+
+            print(
+                f"  - {column}"
+            )
 
 
     # =========================================================================
-    # Record missing fields
+    # Record which required fields are missing
     # =========================================================================
 
     missing_field_output = (
         f"{crop}_MissingData"
     )
 
-    df[missing_field_output] = pd.NA
+
+    df[
+        missing_field_output
+    ] = pd.NA
+
+
+    # -------------------------------------------------------------------------
+    # Existing columns containing NA
+    # -------------------------------------------------------------------------
 
     for column in existing_required_columns:
 
-        mask = (
+        column_missing_mask = (
+
             df[column].isna()
+
             & ~no_soil_mask
+
+        )
+
+
+        existing = (
+
+            df.loc[
+                column_missing_mask,
+                missing_field_output,
+            ]
+
+        )
+
+
+        df.loc[
+            column_missing_mask,
+            missing_field_output,
+        ] = (
+
+            existing
+            .fillna("")
+            .apply(
+
+                lambda value:
+
+                (
+                    f"{value}; {column}"
+                    if value
+                    else column
+                )
+
+            )
+
+        )
+
+
+    # -------------------------------------------------------------------------
+    # Entirely absent source columns
+    # -------------------------------------------------------------------------
+
+    for column in absent_columns:
+
+        mask = (
+            ~no_soil_mask
         )
 
         existing = (
+
             df.loc[
                 mask,
                 missing_field_output,
             ]
+
         )
 
         df.loc[
             mask,
             missing_field_output,
         ] = (
+
             existing
             .fillna("")
             .apply(
-                lambda x:
-                f"{x}; {column}"
-                if x
-                else column
+
+                lambda value:
+
+                (
+                    f"{value}; {column}"
+                    if value
+                    else column
+                )
+
             )
+
         )
 
 
@@ -772,54 +1426,83 @@ for crop in crops:
     # =========================================================================
 
     df.loc[
+
         missing_data_mask,
+
         f"{crop}_FinalClass",
+
     ] = "Missing data"
 
-    df.loc[
-        missing_data_mask,
-        f"{crop}_HardExcluded",
-    ] = False
 
     df.loc[
+
         missing_data_mask,
+
+        f"{crop}_HardExcluded",
+
+    ] = False
+
+
+    df.loc[
+
+        missing_data_mask,
+
         f"{crop}_HardLimitingFactor",
+
     ] = pd.NA
 
 
     # =========================================================================
-    # Apply Indeterminate class LAST
+    # Apply Indeterminate LAST
     #
-    # This guarantees no-SMU areas always remain Indeterminate.
+    # No SMU means outside the soil assessment domain.
     # =========================================================================
 
     df.loc[
+
         no_soil_mask,
+
         f"{crop}_FinalClass",
+
     ] = "Indeterminate"
 
+
     df.loc[
+
         no_soil_mask,
+
         f"{crop}_HardExcluded",
+
     ] = False
 
+
     df.loc[
+
         no_soil_mask,
+
         f"{crop}_HardLimitingFactor",
+
     ] = "Indeterminate"
 
 
     # =========================================================================
-    # Summary
+    # Crop summary
     # =========================================================================
 
-    print(f"\n{crop} final classes:")
+    print(
+        f"\n{crop} final classes:"
+    )
 
     print(
-        df[f"{crop}_FinalClass"]
+
+        df[
+            f"{crop}_FinalClass"
+        ]
+
         .value_counts(
             dropna=False
         )
+
     )
 
 
@@ -827,17 +1510,39 @@ for crop in crops:
 # Export
 # =============================================================================
 
-print("\n" + "=" * 70)
-print("Exporting")
-print("=" * 70)
+print(
+    "\n"
+    + "=" * 70
+)
+
+print(
+    "Exporting"
+)
+
+print(
+    "=" * 70
+)
+
 
 df.to_csv(
     output_csv,
     index=False,
 )
 
-print("\nDone")
-print(f"Output saved to:\n{output_csv}")
+
+print(
+    "\nDone"
+)
+
+print(
+    f"Output saved to:\n"
+    f"{output_csv}"
+)
+
+
+###############################################################################
+# End
+###############################################################################
 
 ###############################################################################
 # End
