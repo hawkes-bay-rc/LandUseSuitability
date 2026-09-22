@@ -1,121 +1,659 @@
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Current FME version: FME 2025.1.0.0 (20250704 - Build 25606 - WIN64)
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|System Time: 20260902014731 UTC
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME_HOME is 'C:\Program Files\FME\'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME license: FME Form (floating)
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Machine host name is: GISWS1
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|OS Locale Name     : en_NZ
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|OS Locale Encoding : windows-1252
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Process Encoding   : UTF-8
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME API version: '4.0 20250515'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: FME_BASE is 'no'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: FME_MF_DIR is 'D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability/'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: FME_MF_NAME is 'LUS_PostProcessing_V01_ACE_25062026.fmw'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: FME_PRODUCT_NAME is 'FME(R) 2025.1.0.0'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Operating System: Microsoft Windows 11 64-bit  (Build 26200)
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Platform: WIN64
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|System Status: 2.22 TB of disk space available in the FME temporary folder (C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wbrun_1788137921864_28244\fmetmp_10)
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|System Status: 127.15 GB of physical memory available
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|System Status: 508.58 GB of virtual memory available
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|START - ProcessID: 39108, peak process memory usage: 43844 kB, current process memory usage: 43840 kB
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: Command line arguments are `C:\Program Files\FME\fme.exe' `D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability\wb-xlate-1788313650585_28244' `--FME_LAUNCH_VIEWER_APP' `WORKBENCH' `LOG_STANDARDOUT' `YES' `LOG_TIMINGS' `YES' `LogCountServerName' `64375' `LOG_STANDARDOUT' `No' `WORKBENCH_LOG_SERVER' `64357'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: Connection Storage: 'C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Shared folders for formats are : C:\Program Files\FME\datasources;C:\Users\Ashton.Eaves\Documents\FME\Formats
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Shared folders for transformers are : C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\Packages\25606-win64\transformers;C:\Program Files\FME\transformers;C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\FME Store\Transformers
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Shared folders for coordinate systems are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystems
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Shared folders for coordinate system exceptions are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystemExceptions
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Shared folders for coordinate system grid overrides are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystemGridOverrides
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Shared folders for CS-MAP transformation exceptions are : C:\Users\Ashton.Eaves\Documents\FME\CsmapTransformationExceptions
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Shared folders for transformer categories are : C:\Users\Ashton.Eaves\Documents\FME\TransformerCategories
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: No destination coordinate system set
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: Current working folder is `D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: Temporary folder is `C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wbrun_1788137921864_28244\fmetmp_10', set from environment variable `FME_TEMP'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: Cache folder is 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: FME_HOME is `C:\Program Files\FME\'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: Start freeing memory when the process exceeds 381.44 GB
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|FME Configuration: Stop freeing memory when the process is below 286.08 GB
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Creating writer for format: 
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Creating reader for format: 
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|MULTI_READER(MULTI_READER): Will fail with first member reader failure
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|MULTI_READER(MULTI_READER): Adding CSV2 Reader with keyword CSV2_1
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Using Multi Reader with keyword `MULTI_READER' to read multiple datasets
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Creating reader for format: CSV (Comma Separated Value)
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Trying to find a DYNAMIC plugin for reader named `CSV2'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Opening dataset 'D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\CropSuitabilityClassified_ALL.csv'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_TRIM_FEATURE_TYPE_NAME' has the value 'Yes'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_SUPPORTED_READER_ARCHIVE_EXTENSIONS' has the value 'csv.gz,txt.gz'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_DELIMITER' has the value 'auto'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_DELIMITER_DETECTION_ALGORITHM' has the value 'EQUAL_FIELDS_PER_LINE'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_FIELD_NAMES_LINE' has the value '1'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_DATA_START_LINE' has the value '2'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_SCAN_MAX_ROWS' has the value '250000'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_READ_SKIPPED_LINES' has the value 'No'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_ENCODING' has the value 'windows-1252'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive 'FME_NAMES_ENCODING' has the value 'UTF-8'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_SKIP_DUPLICATE_DELIMITERS' has the value 'No'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_FIELD_QUALIFIER_CHARACTER' has the value '"'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_FIELD_QUALIFIER_ESCAPE_CHARACTER' has the value '"'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_TRIM_FIELD_NAME_QUALIFIERS' has the value 'Yes'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_TRIM_FIELD_VALUE_QUALIFIERS' has the value 'Yes'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_PRESERVE_SOURCE_ENCODING' has the value 'No'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_CASE_SENSITIVE_FIELD_NAMES' has the value 'Yes'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_ENFORCE_STRICT_SCHEMA' has the value 'No'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_SCAN_TYPES' has the value 'Yes'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_TYPE_ATTRIBUTE_HANDLING' has the value 'STANDARD_TYPES'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_STRING_TYPE_ATTRIBUTE_HANDLING' has the value 'EXPLICIT_WIDTH'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_SCAN_ADDITIONAL_FIELDS' has the value 'No'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_DATE_INPUT_FORMAT' has the value 'ISO'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_CHUNK_SIZE' has the value '100000'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_TRIM_FIELD_NAME_WHITESPACE' has the value 'Yes'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_READ_EMPTY_VALUES_AS' has the value 'Null'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|CSV reader: Directive '_REPLACE_ATTR_NAME_INVALID_CHARS' has the value 'No'
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Using MultiWriter with keyword `PRIMARY_DEST' to output data (ID_ATTRIBUTE is `multi_writer_id')
-2026-09-02 13:47:31|   0.0|  0.0|INFORM|Writer output will be ordered by value of multi_writer_id
-2026-09-02 13:47:36|  24.3| 24.3|INFORM|CSV reader: Read 1,100,000 features
-2026-09-02 13:47:41|  49.3| 25.0|INFORM|CSV reader: Read 2,200,000 features
-2026-09-02 13:47:47|  73.7| 24.4|INFORM|CSV reader: Read 3,300,000 features
-2026-09-02 13:47:52|  98.5| 24.8|INFORM|CSV reader: Read 4,400,000 features
-2026-09-02 13:47:57| 105.4|  6.9|INFORM|CSV reader: Read 5,600,000 features
-2026-09-02 13:48:01| 109.7|  4.3|INFORM|MULTI_READER(MULTI_READER): Done reading 6469588 features from 1 readers
-2026-09-02 13:48:01| 109.7|  0.0|INFORM|Emptying factory pipeline
-2026-09-02 13:48:01| 109.7|  0.0|STATS |Router and Unexpected Input Remover (RoutingFactory): Tested 6469588 input feature(s), wrote 6469588 output feature(s): 6469588 matched merge filters, 6469588 were routed to output, 0 could not be routed.
-2026-09-02 13:48:01| 109.7|  0.0|STATS |Unwanted Router Input Nuker (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
-2026-09-02 13:48:01| 109.7|  0.0|STATS |GISP.HawkesBay_H3Resolution11_GEODATABASE_SDE_1 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
-2026-09-02 13:48:02| 110.3|  0.6|STATS |CSV_CSV2_1 Splitter (TeeFactory): Cloned 6469588 input feature(s) into 6469588 output feature(s)
-2026-09-02 13:48:02| 110.3|  0.0|STATS |GISP.HawkesBay_Catchments_LCDBv06_GEODATABASE_SDE_3 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
-2026-09-02 13:48:02| 110.3|  0.0|STATS |CSV_CSV2_2 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
-2026-09-02 13:48:02| 110.3|  0.0|STATS |CSV_CSV2_3 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
-2026-09-02 13:48:02| 110.3|  0.0|STATS |GISP.HawkesBay_Regional_Boundary_2025_GEODATABASE_SDE_2 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
-2026-09-02 13:48:02| 110.3|  0.0|STATS |Destination Feature Type Routing Correlator (RoutingFactory): Tested 6469588 input feature(s), wrote 6469588 output feature(s): 0 matched merge filters, 0 were routed to output, 6469588 could not be routed.
-2026-09-02 13:48:02| 110.3|  0.0|STATS |Final Output Nuker (TeeFactory): Cloned 6469588 input feature(s) into 0 output feature(s)
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |      Features not written - verify feature type fanout/dynamic settings
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |  (Check that fanout/dynamic feature type attribute exists and has a value)
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |                                                                       6469588
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |==============================================================================
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |Total features not written                                             6469588
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|STATS |                            Features Read Summary
-2026-09-02 13:48:02| 110.3|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|STATS |CSV                                                                    6469588
-2026-09-02 13:48:02| 110.3|  0.0|STATS |==============================================================================
-2026-09-02 13:48:02| 110.3|  0.0|STATS |Total Features Read                                                    6469588
-2026-09-02 13:48:02| 110.3|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|STATS |                           Features Written Summary
-2026-09-02 13:48:02| 110.3|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|STATS |==============================================================================
-2026-09-02 13:48:02| 110.3|  0.0|STATS |Total Features Written                                                       0
-2026-09-02 13:48:02| 110.3|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |-~                                                                             ~-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |-~      Data caches have been recorded at every stage of the translation.      ~-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |-~                      To inspect the recorded features,                      ~-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |-~                click the data cache icons next to the ports.                ~-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |-~                                                                             ~-
-2026-09-02 13:48:02| 110.3|  0.0|WARN  |-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
-2026-09-02 13:48:02| 110.3|  0.0|INFORM|Translation was SUCCESSFUL with 16 warning(s) (0 feature(s) output)
-2026-09-02 13:48:02| 110.3|  0.0|INFORM|FME Session Duration: 31.2 seconds. (CPU: 98.3s user, 12.0s system)
-2026-09-02 13:48:02| 110.3|  0.0|INFORM|END - ProcessID: 39108, peak process memory usage: 306224 kB, current process memory usage: 135004 kB
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Current FME version: FME 2025.1.0.0 (20250704 - Build 25606 - WIN64)
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|System Time: 20260922030005 UTC
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME_HOME is 'C:\Program Files\FME\'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME license: FME Form (floating)
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Machine host name is: GISWS1
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|OS Locale Name     : en_NZ
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|OS Locale Encoding : windows-1252
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Process Encoding   : UTF-8
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME API version: '4.0 20250515'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: FME_BASE is 'no'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: FME_MF_DIR is 'D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability/'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: FME_MF_NAME is 'LUS_PostProcessing_V01_ACE_25062026.fmw'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: FME_PRODUCT_NAME is 'FME(R) 2025.1.0.0'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Operating System: Microsoft Windows 11 64-bit  (Build 26200)
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Platform: WIN64
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|System Status: 2.10 TB of disk space available in the FME temporary folder (C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wbrun_1790030055734_25816\fmetmp_e)
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|System Status: 127.15 GB of physical memory available
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|System Status: 508.58 GB of virtual memory available
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|START - ProcessID: 26404, peak process memory usage: 43704 kB, current process memory usage: 43700 kB
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: Command line arguments are `C:\Program Files\FME\fme.exe' `D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability\wb-xlate-1790046004118_25816' `--FME_LAUNCH_VIEWER_APP' `WORKBENCH' `LOG_STANDARDOUT' `YES' `LOG_TIMINGS' `YES' `LogCountServerName' `58172' `LOG_STANDARDOUT' `No' `WORKBENCH_LOG_SERVER' `53726'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: Connection Storage: 'C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Shared folders for formats are : C:\Program Files\FME\datasources;C:\Users\Ashton.Eaves\Documents\FME\Formats
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Shared folders for transformers are : C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\Packages\25606-win64\transformers;C:\Program Files\FME\transformers;C:\Users\Ashton.Eaves\AppData\Roaming\Safe Software\FME\FME Store\Transformers
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Shared folders for coordinate systems are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystems
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Shared folders for coordinate system exceptions are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystemExceptions
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Shared folders for coordinate system grid overrides are : C:\Users\Ashton.Eaves\Documents\FME\CoordinateSystemGridOverrides
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Shared folders for CS-MAP transformation exceptions are : C:\Users\Ashton.Eaves\Documents\FME\CsmapTransformationExceptions
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Shared folders for transformer categories are : C:\Users\Ashton.Eaves\Documents\FME\TransformerCategories
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: No destination coordinate system set
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: Current working folder is `D:\Land\GIS_DATA\Landuse\LanduseSuitability\2_Workspaces\LandUseSuitability'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: Temporary folder is `C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wbrun_1790030055734_25816\fmetmp_e', set from environment variable `FME_TEMP'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: Cache folder is 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: FME_HOME is `C:\Program Files\FME\'
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: Start freeing memory when the process exceeds 381.44 GB
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|FME Configuration: Stop freeing memory when the process is below 286.08 GB
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Creating writer for format: 
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Creating reader for format: 
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|MULTI_READER(MULTI_READER): Will fail with first member reader failure
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Using Multi Reader with keyword `MULTI_READER' to read multiple datasets
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Using MultiWriter with keyword `PRIMARY_DEST' to output data (ID_ATTRIBUTE is `multi_writer_id')
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Writer output will be ordered by value of multi_writer_id
+2026-09-22 15:00:04|   0.0|  0.0|INFORM|Emptying factory pipeline
+2026-09-22 15:00:04|   0.0|  0.0|STATS |Router and Unexpected Input Remover (RoutingFactory): Tested 0 input feature(s), wrote 0 output feature(s): 0 matched merge filters, 0 were routed to output, 0 could not be routed.
+2026-09-22 15:00:04|   0.0|  0.0|STATS |Unwanted Router Input Nuker (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:00:04|   0.0|  0.0|STATS |CSV_CSV2_1 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:00:04|   0.0|  0.0|STATS |GISP.HawkesBay_Catchments_LCDBv06_GEODATABASE_SDE_3 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:00:04|   0.0|  0.0|STATS |GISP.HawkesBay_H3Resolution11_GEODATABASE_SDE_1 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:00:04|   0.0|  0.0|STATS |CSV_CSV2_3 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:00:04|   0.0|  0.0|STATS |GISP.HawkesBay_LocalAuthorityBoundaries_2025_GEODATABASE_SDE_4 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:00:04|   0.0|  0.0|STATS |GISP.HawkesBay_Regional_Boundary_2025_GEODATABASE_SDE_2 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:00:04|   0.0|  0.0|STATS |CSV_CSV2_2 Splitter (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:00:04|   0.0|  0.0|STATS |Restoring 6418950 feature(s) from FME feature store file `C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_DateTimeStamper -1 70 fo 0 OUTPUT  0  f5e611ab7366060af4bdd658b5c39966195e2e80.ffs'
+2026-09-22 15:00:09|   4.9|  4.9|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 63,677
+2026-09-22 15:00:09|   4.9|  0.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 291,000
+2026-09-22 15:00:14|   9.8|  4.9|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 98,468
+2026-09-22 15:00:14|   9.9|  0.1|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 574,000
+2026-09-22 15:00:19|  14.9|  5.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 866,500
+2026-09-22 15:00:23|  19.2|  4.3|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 98,725
+2026-09-22 15:00:24|  19.9|  0.7|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 1,155,000
+2026-09-22 15:00:28|  24.2|  4.3|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 196,811
+2026-09-22 15:00:29|  24.9|  0.7|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 1,424,000
+2026-09-22 15:00:34|  29.9|  5.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 1,715,500
+2026-09-22 15:00:36|  31.4|  1.5|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 203,358
+2026-09-22 15:00:39|  34.9|  3.5|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 2,002,000
+2026-09-22 15:00:41|  36.5|  1.6|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 216,305
+2026-09-22 15:00:44|  39.9|  3.4|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 2,285,500
+2026-09-22 15:00:46|  41.5|  1.6|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 235,842
+2026-09-22 15:00:49|  44.9|  3.4|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 2,568,500
+2026-09-22 15:00:54|  49.9|  5.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 2,858,500
+2026-09-22 15:00:59|  54.9|  5.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 3,152,500
+2026-09-22 15:01:03|  58.4|  3.5|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 250,522
+2026-09-22 15:01:04|  59.9|  1.5|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 3,445,000
+2026-09-22 15:01:08|  63.4|  3.5|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 251,974
+2026-09-22 15:01:09|  64.9|  1.5|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 3,734,500
+2026-09-22 15:01:13|  68.4|  3.5|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 275,653
+2026-09-22 15:01:14|  69.9|  1.5|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 4,015,500
+2026-09-22 15:01:18|  73.5|  3.6|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 312,002
+2026-09-22 15:01:19|  74.9|  1.4|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 4,298,000
+2026-09-22 15:01:24|  79.9|  5.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 4,562,500
+2026-09-22 15:01:29|  84.9|  5.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 4,826,500
+2026-09-22 15:01:34|  89.8|  4.9|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 5,087,500
+2026-09-22 15:01:36|  91.5|  1.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 315,904
+2026-09-22 15:01:39|  94.9|  3.4|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 5,346,500
+2026-09-22 15:01:41|  96.5|  1.6|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 319,700
+2026-09-22 15:01:44|  99.8|  3.3|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 5,604,500
+2026-09-22 15:01:46| 101.7|  1.9|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 322,347
+2026-09-22 15:01:49| 104.8|  3.1|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 5,866,000
+2026-09-22 15:01:54| 109.8|  5.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 6,126,000
+2026-09-22 15:01:59| 114.8|  5.0|INFORM|DateTimeStamper_OUTPUT_-1_103_Player (RecorderFactory): Playing back feature 6,383,000
+2026-09-22 15:02:00| 115.5|  0.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Continuing to process geometric dissolving tasks.  At number: 322,356
+2026-09-22 15:02:00| 115.6|  0.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Dissolving with an automatic tolerance of 1.138906414259999e-8
+2026-09-22 15:02:01| 116.5|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1.fts'
+2026-09-22 15:02:01| 116.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:02| 117.3|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_1.fts'
+2026-09-22 15:02:02| 117.3|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:02| 118.0|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_2.fts'
+2026-09-22 15:02:02| 118.0|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:03| 118.8|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_3.fts'
+2026-09-22 15:02:03| 118.9|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:04| 119.6|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_4.fts'
+2026-09-22 15:02:04| 119.6|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:05| 120.5|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_5.fts'
+2026-09-22 15:02:05| 120.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:05| 120.7|  0.2|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Geometrically processing areas to dissolve: 23.14% Complete.
+2026-09-22 15:02:06| 121.5|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_6.fts'
+2026-09-22 15:02:06| 121.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:07| 122.7|  1.2|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 1 / 5: Geometrically processing areas to dissolve: 100% Complete.
+2026-09-22 15:02:07| 122.7|  0.0|INFORM|FFS writer: Writing 52280 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_7.fts'
+2026-09-22 15:02:07| 122.8|  0.1|INFORM|Spatial Index: Adding 52280 features
+2026-09-22 15:02:08| 123.2|  0.4|INFORM|FFS writer: Writing 10599 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 0 AREA  0  cfb4ce11239deccec73c67921ae962b81ba6fcbd.fts'
+2026-09-22 15:02:08| 123.2|  0.0|INFORM|Spatial Index: Adding 10599 features
+2026-09-22 15:02:08| 123.2|  0.0|WARN  |Dissolver_6 (PolygonDissolveFactory): Dissolving produced unexpected remnants. The unused data will by output via the remnants port
+2026-09-22 15:02:08| 123.4|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_8.fts'
+2026-09-22 15:02:08| 123.7|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_9.fts'
+2026-09-22 15:02:08| 123.9|  0.2|INFORM|FFS writer: Writing 39362 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_10.fts'
+2026-09-22 15:02:08| 124.0|  0.1|INFORM|FFS writer: Writing 60638 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_11.fts'
+2026-09-22 15:02:08| 124.1|  0.1|INFORM|FFS writer: Writing 23851 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_12.fts'
+2026-09-22 15:02:09| 124.2|  0.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 2 / 5: Continuing to process geometric dissolving tasks.  At number: 323,852
+2026-09-22 15:02:10| 125.8|  1.6|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 2 / 5: Dissolving with an automatic tolerance of 1.1414915426800001e-8
+2026-09-22 15:02:11| 126.7|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_13.fts'
+2026-09-22 15:02:11| 126.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:12| 127.5|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_14.fts'
+2026-09-22 15:02:12| 127.6|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:13| 128.4|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_15.fts'
+2026-09-22 15:02:13| 128.5|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:14| 129.3|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_16.fts'
+2026-09-22 15:02:14| 129.3|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:15| 130.2|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_17.fts'
+2026-09-22 15:02:15| 130.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:15| 130.9|  0.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 2 / 5: Geometrically processing areas to dissolve: 6.62% Complete.
+2026-09-22 15:02:15| 130.9|  0.0|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_18.fts'
+2026-09-22 15:02:15| 131.0|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:16| 131.7|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_19.fts'
+2026-09-22 15:02:16| 131.8|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:17| 132.4|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_20.fts'
+2026-09-22 15:02:17| 132.5|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:18| 133.3|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_21.fts'
+2026-09-22 15:02:18| 133.3|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:18| 134.0|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_22.fts'
+2026-09-22 15:02:18| 134.1|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:19| 134.8|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_23.fts'
+2026-09-22 15:02:19| 134.9|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:20| 135.6|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_24.fts'
+2026-09-22 15:02:20| 135.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:20| 135.9|  0.2|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 2 / 5: Geometrically processing areas to dissolve: 14.82% Complete.
+2026-09-22 15:02:21| 136.5|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_25.fts'
+2026-09-22 15:02:21| 136.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:22| 137.3|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_26.fts'
+2026-09-22 15:02:22| 137.4|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:23| 138.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_27.fts'
+2026-09-22 15:02:23| 138.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:24| 139.2|  1.0|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_28.fts'
+2026-09-22 15:02:24| 139.3|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:25| 140.4|  1.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_29.fts'
+2026-09-22 15:02:25| 140.4|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:25| 140.9|  0.5|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 2 / 5: Geometrically processing areas to dissolve: 36.2% Complete.
+2026-09-22 15:02:27| 142.1|  1.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_30.fts'
+2026-09-22 15:02:27| 142.1|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:28| 143.2|  1.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 2 / 5: Geometrically processing areas to dissolve: 100% Complete.
+2026-09-22 15:02:28| 143.2|  0.0|INFORM|FFS writer: Writing 18112 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_31.fts'
+2026-09-22 15:02:28| 143.2|  0.0|INFORM|Spatial Index: Adding 18112 features
+2026-09-22 15:02:28| 144.0|  0.8|INFORM|FFS writer: Writing 21602 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 0 AREA  0  cfb4ce11239deccec73c67921ae962b81ba6fcbd_1.fts'
+2026-09-22 15:02:29| 144.2|  0.2|INFORM|Spatial Index: Adding 21602 features
+2026-09-22 15:02:29| 144.5|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_32.fts'
+2026-09-22 15:02:29| 144.8|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_33.fts'
+2026-09-22 15:02:29| 145.0|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_34.fts'
+2026-09-22 15:02:30| 145.2|  0.2|INFORM|FFS writer: Writing 98514 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_35.fts'
+2026-09-22 15:02:30| 145.4|  0.2|INFORM|Dissolver_6_REMNANTS Feature Recorder -1 2147680353 (RecorderFactory): Splitting bulk features into individual features
+2026-09-22 15:02:30| 145.5|  0.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_36.fts'
+2026-09-22 15:02:30| 145.9|  0.4|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_37.fts'
+2026-09-22 15:02:30| 146.1|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_38.fts'
+2026-09-22 15:02:31| 146.3|  0.2|INFORM|FFS writer: Writing 70715 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_39.fts'
+2026-09-22 15:02:31| 146.5|  0.2|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Continuing to process geometric dissolving tasks.  At number: 1,094,567
+2026-09-22 15:02:36| 151.5|  5.0|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Continuing to process geometric dissolving tasks.  At number: 3,742,674
+2026-09-22 15:02:38| 153.4|  1.9|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Dissolving with an automatic tolerance of 1.1442660949199993e-8
+2026-09-22 15:02:39| 155.0|  1.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_40.fts'
+2026-09-22 15:02:39| 155.0|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:40| 155.8|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_41.fts'
+2026-09-22 15:02:40| 155.8|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:41| 156.7|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_42.fts'
+2026-09-22 15:02:41| 156.8|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:42| 157.5|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_43.fts'
+2026-09-22 15:02:42| 157.6|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:43| 158.5|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_44.fts'
+2026-09-22 15:02:43| 158.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:44| 159.2|  0.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 1.17% Complete.
+2026-09-22 15:02:44| 159.3|  0.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_45.fts'
+2026-09-22 15:02:44| 159.3|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:45| 160.2|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_46.fts'
+2026-09-22 15:02:45| 160.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:45| 161.0|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_47.fts'
+2026-09-22 15:02:45| 161.0|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:46| 161.9|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_48.fts'
+2026-09-22 15:02:46| 161.9|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:47| 162.7|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_49.fts'
+2026-09-22 15:02:47| 162.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:48| 163.6|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_50.fts'
+2026-09-22 15:02:48| 163.6|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:49| 164.3|  0.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 2.17% Complete.
+2026-09-22 15:02:49| 164.4|  0.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_51.fts'
+2026-09-22 15:02:49| 164.5|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:50| 165.3|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_52.fts'
+2026-09-22 15:02:50| 165.3|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:51| 166.1|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_53.fts'
+2026-09-22 15:02:51| 166.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:51| 167.0|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_54.fts'
+2026-09-22 15:02:51| 167.1|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:52| 167.9|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_55.fts'
+2026-09-22 15:02:52| 167.9|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:53| 168.7|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_56.fts'
+2026-09-22 15:02:53| 168.8|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:54| 169.3|  0.5|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 3.28% Complete.
+2026-09-22 15:02:54| 169.6|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_57.fts'
+2026-09-22 15:02:54| 169.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:55| 170.5|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_58.fts'
+2026-09-22 15:02:55| 170.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:56| 171.3|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_59.fts'
+2026-09-22 15:02:56| 171.4|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:57| 172.3|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_60.fts'
+2026-09-22 15:02:57| 172.4|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:58| 173.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_61.fts'
+2026-09-22 15:02:58| 173.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:59| 174.1|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_62.fts'
+2026-09-22 15:02:59| 174.1|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:02:59| 174.2|  0.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 4.47% Complete.
+2026-09-22 15:02:59| 174.9|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_63.fts'
+2026-09-22 15:02:59| 174.9|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:00| 175.7|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_64.fts'
+2026-09-22 15:03:00| 175.8|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:01| 176.4|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_65.fts'
+2026-09-22 15:03:01| 176.5|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:02| 177.2|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_66.fts'
+2026-09-22 15:03:02| 177.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:02| 177.9|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_67.fts'
+2026-09-22 15:03:03| 178.1|  0.2|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:03| 178.7|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_68.fts'
+2026-09-22 15:03:03| 178.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:04| 179.2|  0.5|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 5.68% Complete.
+2026-09-22 15:03:04| 179.5|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_69.fts'
+2026-09-22 15:03:04| 179.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:05| 180.2|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_70.fts'
+2026-09-22 15:03:05| 180.3|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:05| 180.9|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_71.fts'
+2026-09-22 15:03:05| 180.9|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:06| 181.5|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_72.fts'
+2026-09-22 15:03:06| 181.6|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:07| 182.2|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_73.fts'
+2026-09-22 15:03:07| 182.3|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:08| 183.0|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_74.fts'
+2026-09-22 15:03:08| 183.1|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:08| 183.7|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_75.fts'
+2026-09-22 15:03:08| 183.8|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:09| 184.2|  0.4|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 6.92% Complete.
+2026-09-22 15:03:09| 184.4|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_76.fts'
+2026-09-22 15:03:09| 184.4|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:10| 185.1|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_77.fts'
+2026-09-22 15:03:10| 185.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:10| 185.9|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_78.fts'
+2026-09-22 15:03:10| 185.9|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:11| 186.6|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_79.fts'
+2026-09-22 15:03:11| 186.6|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:12| 187.3|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_80.fts'
+2026-09-22 15:03:12| 187.4|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:13| 188.0|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_81.fts'
+2026-09-22 15:03:13| 188.1|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:13| 188.8|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_82.fts'
+2026-09-22 15:03:13| 188.8|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:14| 189.2|  0.4|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 8.16% Complete.
+2026-09-22 15:03:14| 189.6|  0.4|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_83.fts'
+2026-09-22 15:03:14| 189.6|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:15| 190.3|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_84.fts'
+2026-09-22 15:03:15| 190.4|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:16| 191.1|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_85.fts'
+2026-09-22 15:03:16| 191.1|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:16| 191.8|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_86.fts'
+2026-09-22 15:03:16| 192.0|  0.2|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:17| 192.7|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_87.fts'
+2026-09-22 15:03:17| 192.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:18| 193.4|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_88.fts'
+2026-09-22 15:03:18| 193.4|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:19| 194.1|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_89.fts'
+2026-09-22 15:03:19| 194.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:19| 194.3|  0.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 9.39% Complete.
+2026-09-22 15:03:19| 194.9|  0.6|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_90.fts'
+2026-09-22 15:03:20| 194.9|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:20| 195.6|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_91.fts'
+2026-09-22 15:03:20| 195.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:21| 196.4|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_92.fts'
+2026-09-22 15:03:21| 196.4|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:22| 197.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_93.fts'
+2026-09-22 15:03:22| 197.3|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:23| 198.0|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_94.fts'
+2026-09-22 15:03:23| 198.0|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:23| 198.8|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_95.fts'
+2026-09-22 15:03:23| 198.8|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:24| 199.2|  0.4|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 11.15% Complete.
+2026-09-22 15:03:24| 199.7|  0.5|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_96.fts'
+2026-09-22 15:03:24| 199.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:25| 200.5|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_97.fts'
+2026-09-22 15:03:25| 200.6|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:26| 201.3|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_98.fts'
+2026-09-22 15:03:26| 201.4|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:27| 202.1|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_99.fts'
+2026-09-22 15:03:27| 202.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:28| 203.0|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_100.fts'
+2026-09-22 15:03:28| 203.0|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:28| 203.8|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_101.fts'
+2026-09-22 15:03:28| 203.8|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:29| 204.2|  0.4|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 12.91% Complete.
+2026-09-22 15:03:29| 204.6|  0.4|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_102.fts'
+2026-09-22 15:03:29| 204.6|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:30| 205.4|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_103.fts'
+2026-09-22 15:03:30| 205.4|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:31| 206.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_104.fts'
+2026-09-22 15:03:31| 206.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:32| 207.0|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_105.fts'
+2026-09-22 15:03:32| 207.1|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:32| 207.8|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_106.fts'
+2026-09-22 15:03:32| 207.9|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:33| 208.7|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_107.fts'
+2026-09-22 15:03:33| 208.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:34| 209.2|  0.5|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 14.91% Complete.
+2026-09-22 15:03:34| 209.6|  0.4|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_108.fts'
+2026-09-22 15:03:34| 209.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:35| 210.6|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_109.fts'
+2026-09-22 15:03:35| 210.6|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:36| 211.6|  1.0|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_110.fts'
+2026-09-22 15:03:36| 211.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:37| 212.6|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_111.fts'
+2026-09-22 15:03:37| 212.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:38| 213.6|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_112.fts'
+2026-09-22 15:03:38| 213.8|  0.2|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:39| 214.2|  0.4|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 17.62% Complete.
+2026-09-22 15:03:39| 214.7|  0.5|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_113.fts'
+2026-09-22 15:03:39| 214.8|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:40| 215.7|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_114.fts'
+2026-09-22 15:03:40| 215.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:41| 216.6|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_115.fts'
+2026-09-22 15:03:41| 216.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:42| 217.8|  1.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_116.fts'
+2026-09-22 15:03:43| 217.9|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:44| 219.2|  1.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_117.fts'
+2026-09-22 15:03:44| 219.3|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:44| 219.4|  0.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 21.02% Complete.
+2026-09-22 15:03:45| 220.5|  1.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_118.fts'
+2026-09-22 15:03:45| 220.6|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:46| 221.8|  1.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_119.fts'
+2026-09-22 15:03:46| 221.8|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:48| 223.2|  1.4|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_120.fts'
+2026-09-22 15:03:48| 223.3|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:49| 224.4|  1.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 25.75% Complete.
+2026-09-22 15:03:50| 225.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_121.fts'
+2026-09-22 15:03:50| 225.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:52| 227.0|  1.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_122.fts'
+2026-09-22 15:03:52| 227.1|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:54| 229.4|  2.3|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 32.52% Complete.
+2026-09-22 15:03:54| 229.6|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_123.fts'
+2026-09-22 15:03:54| 229.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:58| 233.5|  3.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_124.fts'
+2026-09-22 15:03:58| 233.6|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:03:59| 234.3|  0.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 45.41% Complete.
+2026-09-22 15:04:02| 237.7|  3.4|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 3 / 5: Geometrically processing areas to dissolve: 100% Complete.
+2026-09-22 15:04:02| 237.7|  0.0|INFORM|FFS writer: Writing 43662 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_125.fts'
+2026-09-22 15:04:02| 237.7|  0.0|INFORM|Spatial Index: Adding 43662 features
+2026-09-22 15:04:06| 241.0|  3.3|INFORM|FFS writer: Writing 6518 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 0 AREA  0  cfb4ce11239deccec73c67921ae962b81ba6fcbd_2.fts'
+2026-09-22 15:04:06| 241.1|  0.1|INFORM|Spatial Index: Adding 6518 features
+2026-09-22 15:04:06| 241.3|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_126.fts'
+2026-09-22 15:04:06| 241.6|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_127.fts'
+2026-09-22 15:04:06| 241.8|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_128.fts'
+2026-09-22 15:04:07| 242.0|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_129.fts'
+2026-09-22 15:04:07| 242.2|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_130.fts'
+2026-09-22 15:04:07| 242.5|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_131.fts'
+2026-09-22 15:04:08| 242.9|  0.4|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_132.fts'
+2026-09-22 15:04:08| 243.1|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_133.fts'
+2026-09-22 15:04:08| 243.4|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_134.fts'
+2026-09-22 15:04:08| 243.5|  0.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_135.fts'
+2026-09-22 15:04:08| 243.8|  0.3|INFORM|FFS writer: Writing 81522 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_136.fts'
+2026-09-22 15:04:09| 243.9|  0.1|INFORM|FFS writer: Writing 18478 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_137.fts'
+2026-09-22 15:04:09| 244.1|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_138.fts'
+2026-09-22 15:04:09| 244.3|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_139.fts'
+2026-09-22 15:04:09| 244.5|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_140.fts'
+2026-09-22 15:04:09| 244.7|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_141.fts'
+2026-09-22 15:04:10| 245.0|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_142.fts'
+2026-09-22 15:04:10| 245.3|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_143.fts'
+2026-09-22 15:04:10| 245.5|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_144.fts'
+2026-09-22 15:04:10| 245.7|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_145.fts'
+2026-09-22 15:04:11| 245.9|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_146.fts'
+2026-09-22 15:04:11| 246.2|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_147.fts'
+2026-09-22 15:04:11| 246.4|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_148.fts'
+2026-09-22 15:04:11| 246.6|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_149.fts'
+2026-09-22 15:04:12| 246.9|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_150.fts'
+2026-09-22 15:04:12| 247.1|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_151.fts'
+2026-09-22 15:04:12| 247.4|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_152.fts'
+2026-09-22 15:04:12| 247.6|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_153.fts'
+2026-09-22 15:04:13| 247.8|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_154.fts'
+2026-09-22 15:04:13| 248.1|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_155.fts'
+2026-09-22 15:04:13| 248.4|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_156.fts'
+2026-09-22 15:04:13| 248.7|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_157.fts'
+2026-09-22 15:04:14| 249.1|  0.4|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_158.fts'
+2026-09-22 15:04:14| 249.4|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_159.fts'
+2026-09-22 15:04:14| 249.6|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_160.fts'
+2026-09-22 15:04:15| 249.7|  0.1|INFORM|FFS writer: Writing 65819 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_161.fts'
+2026-09-22 15:04:22| 257.4|  7.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Continuing to process geometric dissolving tasks.  At number: 4,560,386
+2026-09-22 15:04:27| 262.1|  4.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Dissolving with an automatic tolerance of 1.1429800348999994e-8
+2026-09-22 15:04:28| 263.1|  1.0|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_162.fts'
+2026-09-22 15:04:28| 263.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:29| 263.9|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_163.fts'
+2026-09-22 15:04:29| 264.0|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:30| 264.8|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_164.fts'
+2026-09-22 15:04:30| 264.8|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:30| 265.6|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_165.fts'
+2026-09-22 15:04:30| 265.6|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:31| 266.4|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_166.fts'
+2026-09-22 15:04:31| 266.5|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:32| 267.3|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_167.fts'
+2026-09-22 15:04:32| 267.3|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:32| 267.4|  0.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 2.3% Complete.
+2026-09-22 15:04:33| 268.1|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_168.fts'
+2026-09-22 15:04:33| 268.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:34| 269.0|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_169.fts'
+2026-09-22 15:04:34| 269.0|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:35| 269.8|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_170.fts'
+2026-09-22 15:04:35| 269.9|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:36| 270.8|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_171.fts'
+2026-09-22 15:04:36| 270.9|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:36| 271.7|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_172.fts'
+2026-09-22 15:04:36| 271.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:37| 272.4|  0.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 4.99% Complete.
+2026-09-22 15:04:37| 272.5|  0.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_173.fts'
+2026-09-22 15:04:37| 272.6|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:38| 273.4|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_174.fts'
+2026-09-22 15:04:38| 273.4|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:39| 274.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_175.fts'
+2026-09-22 15:04:39| 274.3|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:40| 275.1|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_176.fts'
+2026-09-22 15:04:40| 275.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:41| 276.0|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_177.fts'
+2026-09-22 15:04:41| 276.1|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:42| 276.9|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_178.fts'
+2026-09-22 15:04:42| 277.0|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:42| 277.4|  0.4|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 7.26% Complete.
+2026-09-22 15:04:43| 277.7|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_179.fts'
+2026-09-22 15:04:43| 277.7|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:43| 278.6|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_180.fts'
+2026-09-22 15:04:43| 278.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:44| 279.5|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_181.fts'
+2026-09-22 15:04:44| 279.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:45| 280.3|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_182.fts'
+2026-09-22 15:04:45| 280.3|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:46| 281.1|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_183.fts'
+2026-09-22 15:04:46| 281.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:47| 282.1|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_184.fts'
+2026-09-22 15:04:47| 282.1|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:47| 282.4|  0.3|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 9.92% Complete.
+2026-09-22 15:04:48| 282.9|  0.5|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_185.fts'
+2026-09-22 15:04:48| 282.9|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:49| 283.8|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_186.fts'
+2026-09-22 15:04:49| 283.8|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:49| 284.6|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_187.fts'
+2026-09-22 15:04:49| 284.7|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:50| 285.5|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_188.fts'
+2026-09-22 15:04:50| 285.5|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:51| 286.4|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_189.fts'
+2026-09-22 15:04:51| 286.4|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:52| 287.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_190.fts'
+2026-09-22 15:04:52| 287.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:52| 287.3|  0.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 13.68% Complete.
+2026-09-22 15:04:53| 288.1|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_191.fts'
+2026-09-22 15:04:53| 288.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:54| 289.0|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_192.fts'
+2026-09-22 15:04:54| 289.1|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:55| 290.1|  1.0|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_193.fts'
+2026-09-22 15:04:55| 290.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:56| 291.3|  1.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_194.fts'
+2026-09-22 15:04:56| 291.3|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:57| 292.2|  0.9|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_195.fts'
+2026-09-22 15:04:57| 292.3|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:57| 292.4|  0.1|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 18.37% Complete.
+2026-09-22 15:04:58| 293.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_196.fts'
+2026-09-22 15:04:58| 293.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:04:59| 294.4|  1.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_197.fts'
+2026-09-22 15:04:59| 294.5|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:01| 295.8|  1.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_198.fts'
+2026-09-22 15:05:01| 295.8|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:02| 297.1|  1.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_199.fts'
+2026-09-22 15:05:02| 297.2|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:02| 297.4|  0.2|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 25.41% Complete.
+2026-09-22 15:05:03| 298.7|  1.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_200.fts'
+2026-09-22 15:05:04| 298.8|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:05| 300.6|  1.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_201.fts'
+2026-09-22 15:05:05| 300.6|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:07| 302.4|  1.8|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 39.56% Complete.
+2026-09-22 15:05:08| 303.4|  1.0|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_202.fts'
+2026-09-22 15:05:08| 303.4|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:12| 307.4|  4.0|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 81.85% Complete.
+2026-09-22 15:05:14| 309.0|  1.6|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 4 / 5: Geometrically processing areas to dissolve: 100% Complete.
+2026-09-22 15:05:14| 309.0|  0.0|INFORM|FFS writer: Writing 65368 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_203.fts'
+2026-09-22 15:05:14| 309.0|  0.0|INFORM|Spatial Index: Adding 65368 features
+2026-09-22 15:05:17| 311.8|  2.8|INFORM|FFS writer: Writing 13267 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 0 AREA  0  cfb4ce11239deccec73c67921ae962b81ba6fcbd_3.fts'
+2026-09-22 15:05:17| 311.9|  0.1|INFORM|Spatial Index: Adding 13267 features
+2026-09-22 15:05:17| 312.1|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_204.fts'
+2026-09-22 15:05:17| 312.4|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_205.fts'
+2026-09-22 15:05:17| 312.5|  0.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_206.fts'
+2026-09-22 15:05:18| 312.9|  0.4|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_207.fts'
+2026-09-22 15:05:18| 313.0|  0.1|INFORM|FFS writer: Writing 62525 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_208.fts'
+2026-09-22 15:05:18| 313.0|  0.0|INFORM|FFS writer: Writing 37475 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_209.fts'
+2026-09-22 15:05:18| 313.3|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_210.fts'
+2026-09-22 15:05:18| 313.6|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_211.fts'
+2026-09-22 15:05:19| 313.8|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_212.fts'
+2026-09-22 15:05:19| 314.0|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_213.fts'
+2026-09-22 15:05:19| 314.3|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_214.fts'
+2026-09-22 15:05:19| 314.5|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_215.fts'
+2026-09-22 15:05:20| 314.8|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_216.fts'
+2026-09-22 15:05:20| 315.1|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_217.fts'
+2026-09-22 15:05:20| 315.3|  0.2|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_218.fts'
+2026-09-22 15:05:20| 315.6|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_219.fts'
+2026-09-22 15:05:21| 315.7|  0.1|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_220.fts'
+2026-09-22 15:05:21| 316.0|  0.3|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_221.fts'
+2026-09-22 15:05:21| 316.0|  0.0|INFORM|FFS writer: Writing 7606 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_222.fts'
+2026-09-22 15:05:31| 325.9|  9.9|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 5 / 5: Continuing to process geometric dissolving tasks.  At number: 6,267,992
+2026-09-22 15:05:33| 327.6|  1.7|INFORM|Dissolver_6 (PolygonDissolveFactory): Group 5 / 5: Dissolving with an automatic tolerance of 1.143220010438352e-8
+2026-09-22 15:05:33| 328.3|  0.7|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_223.fts'
+2026-09-22 15:05:33| 328.4|  0.1|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:34| 329.2|  0.8|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_224.fts'
+2026-09-22 15:05:34| 329.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:35| 330.2|  1.0|INFORM|FFS writer: Writing 100000 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_225.fts'
+2026-09-22 15:05:35| 330.2|  0.0|INFORM|Spatial Index: Adding 100000 features
+2026-09-22 15:05:36| 331.1|  0.9|INFORM|FFS writer: Writing 49864 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_226.fts'
+2026-09-22 15:05:36| 331.1|  0.0|INFORM|Spatial Index: Adding 49864 features
+2026-09-22 15:05:37| 331.5|  0.4|INFORM|FFS writer: Writing 5816 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 0 AREA  0  cfb4ce11239deccec73c67921ae962b81ba6fcbd_4.fts'
+2026-09-22 15:05:37| 331.5|  0.0|INFORM|Spatial Index: Adding 5816 features
+2026-09-22 15:05:37| 331.8|  0.3|INFORM|FFS writer: Writing 51332 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_227.fts'
+2026-09-22 15:05:37| 331.9|  0.1|INFORM|FFS writer: Writing 48668 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_228.fts'
+2026-09-22 15:05:37| 332.0|  0.1|INFORM|FFS writer: Writing 50959 feature(s) to file 'C:\Users\ASHTON~1.EAV\AppData\Local\Temp\wb-cache-LUS_PostProcessing_V01_ACE_25062-ZCsBtl\Main_Dissolver_6 -1 97 fo 1 REMNANTS  0  a2076f909d93e1d8987df488f4a87df776a5aae1_229.fts'
+2026-09-22 15:06:06| 361.3| 29.3|STATS |Destination Feature Type Routing Correlator (RoutingFactory): Tested 57802 input feature(s), wrote 57802 output feature(s): 0 matched merge filters, 57802 were routed to output, 0 could not be routed.
+2026-09-22 15:06:06| 361.3|  0.0|STATS |Final Output Nuker (TeeFactory): Cloned 0 input feature(s) into 0 output feature(s)
+2026-09-22 15:06:06| 361.3|  0.0|INFORM|MULTI_WRITER: multi_writer_id `10': Started outputting features
+2026-09-22 15:06:07| 361.5|  0.2|INFORM|Creating writer for format: Esri Geodatabase (File Geodb)
+2026-09-22 15:06:07| 361.6|  0.1|INFORM|Trying to find a DYNAMIC plugin for writer named `GEODATABASE_FILE'
+2026-09-22 15:06:07| 361.6|  0.0|INFORM|FME Configuration: No destination coordinate system set
+2026-09-22 15:06:07| 361.6|  0.0|INFORM|MULTI_WRITER writer: Splitting bulk features into individual features
+2026-09-22 15:06:07| 361.6|  0.0|INFORM|Writer `GEODATABASE_FILE_11' of type `GEODATABASE_FILE' using group definition keyword `GEODATABASE_FILE_11_DEF'
+2026-09-22 15:06:09| 362.1|  0.5|INFORM|The ArcObjects license 'Advanced' is being selected from the ESRILicenseInfo ArcObjects call
+2026-09-22 15:06:09| 362.4|  0.3|INFORM|FME has checked out an Esri license. The product checked out is 'Advanced'
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Installed ArcGIS version is '3.6.0'
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Connected to the File Geodatabase at 'D:\Land\GIS_DATA\Landuse\LanduseSuitability\3_Outputs\LUS_Outputs.gdb'
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|File Geodatabase release: '10.0'
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Fast deletes enabled
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|The 'HAS_Z_VALUES' keyword is set to 'AUTO_DETECT'. With the exception of MultiPatch feature classes, the dimensionality of new feature classes will be based on the first feature written to the feature class. (Features with no geometry are considered 2D)
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|A default z-value of '0' will be used for all 3D features where z-values are not provided
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Esri Geodatabase Writer: Not simplifying geometries being written
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Transactions are being used by the Esri Geodatabase Writer
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Esri Geodatabase Writer: Creating feature type `_20260921_FinalClass_Trees_Dissolved_Totara'
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Esri Geodatabase Writer: The field 'OBJECTID' in feature type '_20260921_FinalClass_Trees_Dissolved_Totara' will not be updated since it is not editable
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Esri Geodatabase Writer: The field 'SHAPE_Length' in feature type '_20260921_FinalClass_Trees_Dissolved_Totara' will not be updated since it is not editable
+2026-09-22 15:06:09| 362.4|  0.0|INFORM|Esri Geodatabase Writer: The field 'SHAPE_Area' in feature type '_20260921_FinalClass_Trees_Dissolved_Totara' will not be updated since it is not editable
+2026-09-22 15:06:09| 362.6|  0.2|INFORM|Transaction #1 was successfully committed
+2026-09-22 15:06:09| 362.8|  0.2|INFORM|Transaction #2 was successfully committed
+2026-09-22 15:06:10| 363.0|  0.2|INFORM|Transaction #3 was successfully committed
+2026-09-22 15:06:10| 363.1|  0.1|INFORM|Transaction #4 was successfully committed
+2026-09-22 15:06:10| 363.4|  0.3|INFORM|Transaction #5 was successfully committed
+2026-09-22 15:06:10| 363.6|  0.2|INFORM|Transaction #6 was successfully committed
+2026-09-22 15:06:10| 363.7|  0.1|INFORM|Transaction #7 was successfully committed
+2026-09-22 15:06:10| 363.9|  0.2|INFORM|Transaction #8 was successfully committed
+2026-09-22 15:06:11| 364.0|  0.1|INFORM|Transaction #9 was successfully committed
+2026-09-22 15:06:11| 364.2|  0.2|INFORM|Transaction #10 was successfully committed
+2026-09-22 15:06:11| 364.3|  0.1|INFORM|MULTI_WRITER: multi_writer_id `10': Writing feature 10000 
+2026-09-22 15:06:11| 364.3|  0.0|INFORM|MULTI_WRITER writer: Splitting bulk features into individual features
+2026-09-22 15:06:11| 364.5|  0.2|INFORM|Transaction #11 was successfully committed
+2026-09-22 15:06:11| 364.7|  0.2|INFORM|Transaction #12 was successfully committed
+2026-09-22 15:06:11| 364.9|  0.2|INFORM|Transaction #13 was successfully committed
+2026-09-22 15:06:12| 365.0|  0.1|INFORM|Transaction #14 was successfully committed
+2026-09-22 15:06:12| 365.2|  0.2|INFORM|Transaction #15 was successfully committed
+2026-09-22 15:06:12| 365.4|  0.2|INFORM|Transaction #16 was successfully committed
+2026-09-22 15:06:12| 365.6|  0.2|INFORM|Transaction #17 was successfully committed
+2026-09-22 15:06:12| 365.8|  0.2|INFORM|Transaction #18 was successfully committed
+2026-09-22 15:06:13| 365.9|  0.1|INFORM|Transaction #19 was successfully committed
+2026-09-22 15:06:13| 366.2|  0.3|INFORM|Transaction #20 was successfully committed
+2026-09-22 15:06:13| 366.4|  0.2|INFORM|Transaction #21 was successfully committed
+2026-09-22 15:06:13| 366.6|  0.2|INFORM|Transaction #22 was successfully committed
+2026-09-22 15:06:13| 366.7|  0.1|INFORM|Transaction #23 was successfully committed
+2026-09-22 15:06:13| 366.9|  0.2|INFORM|Transaction #24 was successfully committed
+2026-09-22 15:06:14| 367.1|  0.2|INFORM|Transaction #25 was successfully committed
+2026-09-22 15:06:14| 367.2|  0.1|INFORM|Transaction #26 was successfully committed
+2026-09-22 15:06:14| 367.4|  0.2|INFORM|Transaction #27 was successfully committed
+2026-09-22 15:06:14| 367.6|  0.2|INFORM|Transaction #28 was successfully committed
+2026-09-22 15:06:14| 367.8|  0.2|INFORM|Transaction #29 was successfully committed
+2026-09-22 15:06:15| 368.0|  0.2|INFORM|Transaction #30 was successfully committed
+2026-09-22 15:06:15| 368.2|  0.2|INFORM|Transaction #31 was successfully committed
+2026-09-22 15:06:15| 368.4|  0.2|INFORM|Transaction #32 was successfully committed
+2026-09-22 15:06:15| 368.5|  0.1|INFORM|MULTI_WRITER: multi_writer_id `10': Writing feature 32000 
+2026-09-22 15:06:15| 368.5|  0.0|INFORM|MULTI_WRITER writer: Splitting bulk features into individual features
+2026-09-22 15:06:15| 368.6|  0.1|INFORM|Transaction #33 was successfully committed
+2026-09-22 15:06:15| 368.8|  0.2|INFORM|Transaction #34 was successfully committed
+2026-09-22 15:06:16| 369.1|  0.3|INFORM|Transaction #35 was successfully committed
+2026-09-22 15:06:16| 369.3|  0.2|INFORM|Transaction #36 was successfully committed
+2026-09-22 15:06:16| 369.5|  0.2|INFORM|Transaction #37 was successfully committed
+2026-09-22 15:06:16| 369.7|  0.2|INFORM|Transaction #38 was successfully committed
+2026-09-22 15:06:16| 369.9|  0.2|INFORM|MULTI_WRITER: multi_writer_id `10': Writing feature 38000 
+2026-09-22 15:06:16| 369.9|  0.0|INFORM|MULTI_WRITER writer: Splitting bulk features into individual features
+2026-09-22 15:06:17| 370.1|  0.2|INFORM|Transaction #39 was successfully committed
+2026-09-22 15:06:17| 370.3|  0.2|INFORM|Transaction #40 was successfully committed
+2026-09-22 15:06:17| 370.6|  0.3|INFORM|Transaction #41 was successfully committed
+2026-09-22 15:06:17| 370.7|  0.1|INFORM|Transaction #42 was successfully committed
+2026-09-22 15:06:18| 371.2|  0.5|INFORM|Transaction #43 was successfully committed
+2026-09-22 15:06:18| 371.5|  0.3|INFORM|Transaction #44 was successfully committed
+2026-09-22 15:06:18| 371.6|  0.1|INFORM|Transaction #45 was successfully committed
+2026-09-22 15:06:18| 371.8|  0.2|INFORM|Transaction #46 was successfully committed
+2026-09-22 15:06:19| 372.2|  0.4|INFORM|Transaction #47 was successfully committed
+2026-09-22 15:06:19| 372.4|  0.2|INFORM|Transaction #48 was successfully committed
+2026-09-22 15:06:19| 372.7|  0.3|INFORM|Transaction #49 was successfully committed
+2026-09-22 15:06:19| 372.8|  0.1|INFORM|Transaction #50 was successfully committed
+2026-09-22 15:06:20| 373.2|  0.4|INFORM|Transaction #51 was successfully committed
+2026-09-22 15:06:20| 373.6|  0.4|INFORM|MULTI_WRITER: multi_writer_id `10': Writing feature 51000 
+2026-09-22 15:06:20| 373.6|  0.0|INFORM|MULTI_WRITER writer: Splitting bulk features into individual features
+2026-09-22 15:06:20| 373.6|  0.0|INFORM|Transaction #52 was successfully committed
+2026-09-22 15:06:20| 373.7|  0.1|INFORM|Transaction #53 was successfully committed
+2026-09-22 15:06:20| 373.9|  0.2|INFORM|Transaction #54 was successfully committed
+2026-09-22 15:06:21| 374.1|  0.2|INFORM|Transaction #55 was successfully committed
+2026-09-22 15:06:21| 374.3|  0.2|INFORM|Transaction #56 was successfully committed
+2026-09-22 15:06:21| 374.5|  0.2|INFORM|Transaction #57 was successfully committed
+2026-09-22 15:06:21| 374.6|  0.1|INFORM|MULTI_WRITER: multi_writer_id `10': Writing feature 57000 
+2026-09-22 15:06:21| 374.6|  0.0|STATS |GeodatabaseRelationshipFeaturesPipeline::GeodatabaseRelationshipFeatures (SortFactory): Finished sorting a total of 0 features.
+2026-09-22 15:06:21| 374.6|  0.0|INFORM|Transaction #58 (final transaction) was successfully committed
+2026-09-22 15:06:21| 374.6|  0.0|INFORM|Closing the Esri Geodatabase writer
+2026-09-22 15:06:21| 374.6|  0.0|INFORM|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|INFORM|Feature output statistics for `GEODATABASE_FILE' writer using keyword `GEODATABASE_FILE_11':
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|STATS |                           Features Written Summary
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|STATS |_20260921_FinalClass_Trees_Dissolved_Totara                              57802
+2026-09-22 15:06:21| 374.6|  0.0|STATS |==============================================================================
+2026-09-22 15:06:21| 374.6|  0.0|STATS |Total Features Written                                                   57802
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|INFORM|MULTI_WRITER: multi_writer_id `10': done writing 57802 feature(s) 
+2026-09-22 15:06:21| 374.6|  0.0|INFORM|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|STATS |                            Features Read Summary
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|STATS |==============================================================================
+2026-09-22 15:06:21| 374.6|  0.0|STATS |Total Features Read                                                          0
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|STATS |                           Features Written Summary
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|STATS |20260921_FinalClass_Trees_Dissolved_Totara                               57802
+2026-09-22 15:06:21| 374.6|  0.0|STATS |==============================================================================
+2026-09-22 15:06:21| 374.6|  0.0|STATS |Total Features Written                                                   57802
+2026-09-22 15:06:21| 374.6|  0.0|STATS |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+2026-09-22 15:06:21| 374.6|  0.0|WARN  |-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+2026-09-22 15:06:21| 374.6|  0.0|WARN  |-~                                                                             ~-
+2026-09-22 15:06:21| 374.6|  0.0|WARN  |-~      Data caches have been recorded at every stage of the translation.      ~-
+2026-09-22 15:06:21| 374.6|  0.0|WARN  |-~                      To inspect the recorded features,                      ~-
+2026-09-22 15:06:21| 374.6|  0.0|WARN  |-~                click the data cache icons next to the ports.                ~-
+2026-09-22 15:06:21| 374.6|  0.0|WARN  |-~                                                                             ~-
+2026-09-22 15:06:21| 374.6|  0.0|WARN  |-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+2026-09-22 15:06:21| 374.6|  0.0|INFORM|Translation was SUCCESSFUL with 8 warning(s) (57802 feature(s) output)
+2026-09-22 15:06:21| 374.7|  0.1|INFORM|FME Session Duration: 6 minutes 17.2 seconds. (CPU: 331.7s user, 43.0s system)
+2026-09-22 15:06:21| 374.7|  0.0|INFORM|END - ProcessID: 26404, peak process memory usage: 14676232 kB, current process memory usage: 246704 kB
